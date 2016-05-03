@@ -12,8 +12,11 @@ r_packages:
   - rjson
   - testthat
   - optparse
-before_script:
+before_install:
   - cd rosetteApi
+before_script:
+  - cd docker
+script: ./runAll.sh
 notifications:
   slack:
     rooms:
