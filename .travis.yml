@@ -15,8 +15,8 @@ r_packages:
 after_install:
   - cd rosetteApi
 before_script:
-  - cd docker
-script: ./runAll.sh
+  - cd tests
+script: Rscript Tests.R
 notifications:
   slack:
     rooms:
