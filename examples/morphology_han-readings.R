@@ -1,4 +1,4 @@
-source("../rosetteApi/R/Api.R")
+source("../R/Api.R")
 library(rjson)
 library("optparse")
 
