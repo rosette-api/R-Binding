@@ -12,7 +12,7 @@ r_packages:
   - rjson
   - testthat
   - optparse
-before_install:
+after_install:
   - cd rosetteApi
 before_script:
   - cd docker
