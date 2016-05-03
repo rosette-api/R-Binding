@@ -1,4 +1,4 @@
-# Rosette API R binding prototype
+# Rosette API R binding
 # Author: Sam Hausmann
 
 library(httr)
@@ -18,35 +18,37 @@ library(rjson)
 #' parameters <- toJSON(parameters)
 #' api(01234567890, "entities", parameters)
 #'}
-api <- function(user_key, endpoint, parameters=NULL) {
+api <- function(user_key, endpoint, parameters=FALSE, url="https://api.rosette.com/rest/v1/") {
   if(is.null(user_key)) {
     stop("API key param empty")
   } else {
 
     if(endpoint == "info") {
-      return(to_json(get_endpoint(user_key, "info")))
+      return(to_json(get_endpoint(user_key, "info", url)))
     } else if (endpoint == "ping") {
-      return(to_json(get_endpoint(user_key, "ping")))
+      return(to_json(get_endpoint(user_key, "ping", url)))
     } else if (endpoint == "language") {
-      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "language"))))
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "language", url))))
     } else if (endpoint == "categories") {
-      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "categories"))))
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "categories", url))))
     } else if (endpoint == "entities") {
-      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "entities"))))
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "entities", url))))
     } else if (endpoint == "name-translation") {
-      return(to_json(error_check(check_for_multipart(user_key, check_names(parameters, "name-translation"), "name-translation"))))
+      return(to_json(error_check(check_for_multipart(user_key, check_names(parameters, "name-translation"), "name-translation", url))))
     } else if (endpoint == "name-similarity") {
-      return(to_json(error_check(check_for_multipart(user_key, check_names(parameters, "name-similarity"), "name-similarity"))))
+      return(to_json(error_check(check_for_multipart(user_key, check_names(parameters, "name-similarity"), "name-similarity", url))))
     } else if (endpoint  == "relationships") {
-      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "relationships"))))
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "relationships", url))))
     } else if (endpoint == "tokens") {
-      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "tokens"))))
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "tokens", url))))
     } else if (endpoint == "morphology") {
-      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), check_morphology(parameters, "morphology")))))
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), check_morphology(parameters, "morphology"), url))))
     } else if (endpoint == "sentiment") {
-      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "sentiment"))))
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "sentiment", url))))
     } else if (endpoint == "sentences") {
-      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "sentences"))))
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "sentences", url))))
+    } else  if (endpoint == "entities/linked"){
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "entities/linked", url))))
     } else {
       stop("Specify a valid Rosette API endpoint")
     }
@@ -106,12 +108,12 @@ check_names <- function(parameters, endpoint) {
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
 #' @return Returns json of the specified Rosette API endpoint response from either a multipart or non-multipart request
-check_for_multipart <- function(user_key, parameters, endpoint) {
+check_for_multipart <- function(user_key, parameters, endpoint, url) {
   if("documentFile" %in% names(fromJSON(parameters))) {
     create_multipart(parameters)
-    return(mutipart_call(user_key, create_multipart(parameters), endpoint, url="https://api.rosette.com/rest/v1/"))
+    return(mutipart_call(user_key, create_multipart(parameters), endpoint, url))
   } else {
-    return(post_endpoint(user_key, parameters, endpoint, url="https://api.rosette.com/rest/v1/"))
+    return(post_endpoint(user_key, parameters, endpoint, url))
   }
 }
 
@@ -155,7 +157,7 @@ create_multipart <- function(parameters) {
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
 #' @param url - Rosette API url
 #' @return Returns the response from the Rosette API
-mutipart_call <- function(user_key, parameters, endpoint, url="https://api.rosette.com/rest/v1/") {
+mutipart_call <- function(user_key, parameters, endpoint, url) {
   response <- POST(paste(url, endpoint, sep=""), encode = "multipart", add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "multipart/mixed"), body = parameters)
   return(response)
 }
@@ -189,7 +191,7 @@ error_check <- function(response) {
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
 #' @param url - Rosette API url
 #' @return Returns the response from the Rosette API
-post_endpoint <- function(user_key, parameters, endpoint, url="https://api.rosette.com/rest/v1/") {
+post_endpoint <- function(user_key, parameters, endpoint, url) {
   response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json"), body = parameters)
   return(response)
 }
@@ -199,7 +201,7 @@ post_endpoint <- function(user_key, parameters, endpoint, url="https://api.roset
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param url - Rosette API url
 #' @return Returns the response from the Rosette API
-get_endpoint <- function(user_key, endpoint, url="https://api.rosette.com/rest/v1/") {
+get_endpoint <- function(user_key, endpoint, url) {
   response <- GET(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key))
   return(response)
 }
