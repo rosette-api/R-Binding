@@ -8,8 +8,10 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
+translated_name_data <- "معمر محمد أبو منيار القذاف"
+
 key <- "name"
-value <- "معمر محمد أبو منيار القذاف"
+value <- translated_name_data
 key1 <- "targetLanguage"
 value1 <- "eng"
 

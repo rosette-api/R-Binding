@@ -8,10 +8,13 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
+matched_name_data1 <- "Michael Jackson"
+matched_name_data2 <- "迈克尔·杰克逊"
+
 key <- "name1"
-value <- "Michael Jackson"
+value <- matched_name_data1
 key1 <- "name2"
-value1 <- "迈克尔·杰克逊"
+value1 <- matched_name_data2
 
 parameters <- list()
 parameters[[ key ]] <- value

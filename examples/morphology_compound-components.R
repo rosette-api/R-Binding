@@ -8,8 +8,10 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
+morphology_compound_components_data <- "Rechtsschutzversicherungsgesellschaften"
+
 key <- "content"
-value <- "Rechtsschutzversicherungsgesellschaften"
+value <- morphology_compound_components_data
 key1 <- "morphology"
 value1 <- "compound-components"
 

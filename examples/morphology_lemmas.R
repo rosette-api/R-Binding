@@ -8,8 +8,10 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
+morphology_lemmas_data <- "The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
+
 key <- "content"
-value <- "The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
+value <- morphology_lemmas_data
 key1 <- "morphology"
 value1 <- "lemmas"
 

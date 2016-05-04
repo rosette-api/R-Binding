@@ -8,8 +8,10 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
+morphology_han_readings_data <- "北京大学生物系主任办公室内部会议"
+
 key <- "content"
-value <- "北京大学生物系主任办公室内部会议"
+value <- morphology_han_readings_data
 key1 <- "morphology"
 value1 <- "han-readings"
 

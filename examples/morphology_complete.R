@@ -8,8 +8,10 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
+morphology_complete_data <- "The quick brown fox jumped over the lazy dog. Yes he did."
+
 key <- "content"
-value <- "The quick brown fox jumped over the lazy dog. Yes he did."
+value <- morphology_complete_data
 key1 <- "morphology"
 value1 <- "complete"
 
