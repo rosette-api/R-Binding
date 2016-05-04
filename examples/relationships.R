@@ -8,7 +8,7 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-relationships_text_data <- "content"
+relationships_text_data <- "The Ghostbusters movie was filmed in Boston."
 
 key <- "content"
 value <- relationships_text_data
