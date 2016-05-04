@@ -4,8 +4,7 @@
 \alias{mutipart_call}
 \title{make a multipart POST request}
 \usage{
-mutipart_call(user_key, parameters, endpoint,
-  url = "https://api.rosette.com/rest/v1/")
+mutipart_call(user_key, parameters, endpoint, url)
 }
 \arguments{
 \item{user_key}{- Rosette API authentication key}
@@ -14,7 +13,7 @@ mutipart_call(user_key, parameters, endpoint,
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
-\item{url}{- Rosette API url}
+\item{url}{- url for Rosette Api}
 }
 \value{
 Returns the response from the Rosette API

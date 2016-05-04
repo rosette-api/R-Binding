@@ -5,7 +5,7 @@ Version: 1.0
 Date: 2016-04-26
 Author: Sam Hausmann
 Maintainer: Sam Hausmann <shausmann@basistech.com>
-Description: API for multilingual text analysis and information extraction <https://developer.rosette.com>
+Description: Rosette is an API for multilingual text analysis and information extraction. More information can be found at https://developer.rosette.com.
 License: Apache License
 Depends:
     R (>= 3.1.0),
