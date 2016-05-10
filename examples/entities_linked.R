@@ -12,9 +12,12 @@ entities_linked_text_data <- "Last month director Paul Feig announced the movie 
 
 key <- "content"
 value <- entities_linked_text_data
+key1 <- "genre"
+value1 <- "social-media"
 
 parameters <- list()
 parameters[[ key ]] <- value
+parameters[[ key1 ]] <- value1
 parameters <- toJSON(parameters)
 
 if(is.na(opt$url)){
