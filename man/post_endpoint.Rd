@@ -4,8 +4,7 @@
 \alias{post_endpoint}
 \title{POST request to specified Rosette API endpoint}
 \usage{
-post_endpoint(user_key, parameters, endpoint,
-  url = "https://api.rosette.com/rest/v1/")
+post_endpoint(user_key, parameters, endpoint, url)
 }
 \arguments{
 \item{user_key}{- Rosette API authentication key}
@@ -14,7 +13,7 @@ post_endpoint(user_key, parameters, endpoint,
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
-\item{url}{- Rosette API url}
+\item{url}{- url for Rosette Api}
 }
 \value{
 Returns the response from the Rosette API

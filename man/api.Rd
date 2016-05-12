@@ -4,7 +4,8 @@
 \alias{api}
 \title{api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized}
 \usage{
-api(user_key, endpoint, parameters = NULL)
+api(user_key, endpoint, parameters = FALSE,
+  url = "https://api.rosette.com/rest/v1/")
 }
 \arguments{
 \item{user_key}{- Rosette API authentication key}
@@ -12,6 +13,8 @@ api(user_key, endpoint, parameters = NULL)
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
 \item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
+
+\item{url}{- url for Rosette Api}
 }
 \value{
 Returns json of the specified Rosette API endpoint response

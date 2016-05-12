@@ -8,6 +8,7 @@ library(rjson)
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @param url - url for Rosette Api
 #' @return Returns json of the specified Rosette API endpoint response
 #' @examples
 #'\dontrun{}
@@ -107,6 +108,7 @@ check_names <- function(parameters, endpoint) {
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @param url - url for Rosette Api
 #' @return Returns json of the specified Rosette API endpoint response from either a multipart or non-multipart request
 check_for_multipart <- function(user_key, parameters, endpoint, url) {
   if("documentFile" %in% names(fromJSON(parameters))) {
@@ -155,7 +157,7 @@ create_multipart <- function(parameters) {
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
-#' @param url - Rosette API url
+#' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 mutipart_call <- function(user_key, parameters, endpoint, url) {
   response <- POST(paste(url, endpoint, sep=""), encode = "multipart", add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "multipart/mixed"), body = parameters)
@@ -189,7 +191,7 @@ error_check <- function(response) {
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
-#' @param url - Rosette API url
+#' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 post_endpoint <- function(user_key, parameters, endpoint, url) {
   response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json"), body = parameters)
@@ -199,7 +201,7 @@ post_endpoint <- function(user_key, parameters, endpoint, url) {
 #' GET request to specified Rosette API endpoint
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
-#' @param url - Rosette API url
+#' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 get_endpoint <- function(user_key, endpoint, url) {
   response <- GET(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key))
@@ -208,7 +210,7 @@ get_endpoint <- function(user_key, endpoint, url) {
 
 #' check if server and binding versions are compatible
 #' @param user_key - Rosette API authentication key
-#' @param url - Rosette API url
+#' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API checkVersion endpoint
 check_version <- function(user_key, url="https://api.rosette.com/rest/v1/") {
 

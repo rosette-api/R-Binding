@@ -9,7 +9,7 @@ check_version(user_key, url = "https://api.rosette.com/rest/v1/")
 \arguments{
 \item{user_key}{- Rosette API authentication key}
 
-\item{url}{- Rosette API url}
+\item{url}{- url for Rosette Api}
 }
 \value{
 Returns the response from the Rosette API checkVersion endpoint
