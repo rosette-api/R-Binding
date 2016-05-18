@@ -11,9 +11,7 @@ with_mock(
 test_that("POST functions mock correctly", {
 with_mock(
   POST = function(x, y, ...) "mocked response",
-  expect_equal(check_version("fakekey", "https://api.rosette.com/rest/v1/"), "mocked response"),
   expect_equal(post_endpoint("fakekey", "parameter data", "endpoint", "https://api.rosette.com/rest/v1/"), "mocked response")
-  #expect_equal(multipart_call("fakekey", "parameter data", "endpoint", "https://api.rosette.com/rest/v1/"), "mocked response")
 )})
 
 test_that("The function detects a multipart", {

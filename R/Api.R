@@ -160,7 +160,8 @@ create_multipart <- function(parameters) {
 #' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 mutipart_call <- function(user_key, parameters, endpoint, url) {
-  response <- POST(paste(url, endpoint, sep=""), encode = "multipart", add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "multipart/mixed"), body = parameters)
+  BINDING_VERSION <- 1.1
+  response <- POST(paste(url, endpoint, sep=""), encode = "multipart", add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "multipart/mixed", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION), body = parameters)
   return(response)
 }
 
@@ -194,7 +195,8 @@ error_check <- function(response) {
 #' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 post_endpoint <- function(user_key, parameters, endpoint, url) {
-  response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json"), body = parameters)
+  BINDING_VERSION <- 1.0
+  response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION), body = parameters)
   return(response)
 }
 
@@ -204,19 +206,7 @@ post_endpoint <- function(user_key, parameters, endpoint, url) {
 #' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 get_endpoint <- function(user_key, endpoint, url) {
-  response <- GET(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key))
+  BINDING_VERSION <- 1.0
+  response <- GET(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION))
   return(response)
 }
-
-#' check if server and binding versions are compatible
-#' @param user_key - Rosette API authentication key
-#' @param url - url for Rosette Api
-#' @return Returns the response from the Rosette API checkVersion endpoint
-check_version <- function(user_key, url="https://api.rosette.com/rest/v1/") {
-
-  # Rosette API R binding version
-  BINDING_VERSION <- "1.0"
-
-  response <- POST(paste(url, "info?clientVersion=", BINDING_VERSION, sep=""), add_headers("X-RosetteAPI-Key" = user_key))
-  return(response)
-} 
