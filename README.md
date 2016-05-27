@@ -10,7 +10,7 @@ Install the module with: `install.packages('rosetteAPI')`
 
 ## Example using the Rosette API language detection endpoint
 ```R
-source("Api.R")
+library(rosetteApi)
 library(rjson)
 
 key <- "contentUri"
