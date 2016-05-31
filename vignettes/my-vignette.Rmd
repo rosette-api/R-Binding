@@ -54,7 +54,7 @@ Visit our [Features and Functions](https://developer.rosette.com/features-and-fu
 ## Example
 
 ```
-source("Api.R")
+library(rosetteApi)
 library(rjson)
 
 key <- "contentUri"

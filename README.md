@@ -7,10 +7,14 @@ This is the Rosette API client binding for R.
 ## Getting Started
 Install the module with: `install.packages('rosetteAPI')`
 
+OR
+
+Ensure you're in the `current release` folder and run the command `R CMD INSTALL rosetteApi_1.0.1.tar.gz`
+
 
 ## Example using the Rosette API language detection endpoint
 ```R
-source("Api.R")
+library(rosetteApi)
 library(rjson)
 
 key <- "contentUri"

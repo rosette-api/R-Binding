@@ -19,6 +19,7 @@ library(rjson)
 #' parameters <- toJSON(parameters)
 #' api(01234567890, "entities", parameters)
 #'}
+#' @export
 api <- function(user_key, endpoint, parameters=FALSE, url="https://api.rosette.com/rest/v1/") {
   if(is.null(user_key)) {
     stop("API key param empty")
