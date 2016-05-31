@@ -4,14 +4,14 @@
 \alias{get_endpoint}
 \title{GET request to specified Rosette API endpoint}
 \usage{
-get_endpoint(user_key, endpoint, url = "https://api.rosette.com/rest/v1/")
+get_endpoint(user_key, endpoint, url)
 }
 \arguments{
 \item{user_key}{- Rosette API authentication key}
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
-\item{url}{- Rosette API url}
+\item{url}{- url for Rosette Api}
 }
 \value{
 Returns the response from the Rosette API

@@ -1,32 +1,28 @@
----
-title: "Rosette API R Binding"
-author: "Sam Hausmann"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
+[![Build Status](https://travis-ci.org/rosette-api/R.svg?branch=master)](https://travis-ci.org/rosette-api/nodejs)
+
+# rosette-api
+
+This is the Rosette API client binding for R.
+
+## Getting Started
+Install the module with: `install.packages('rosetteAPI')`
 
 
-## Introduction
+## Example using the Rosette API language detection endpoint
+```R
+library(rosetteApi)
+library(rjson)
 
-Welcome to the Rosette API suite of linguistic tools and services for R! With the Rosette API endpoints you can extract entities and relationships, translate and compare names, and analyze sentiment of documents and entities from large amounts of unstructured text.
+key <- "contentUri"
+value <- "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
 
-## Limits
+parameters <- list()
+parameters[[ key ]] <- value
+parameters <- toJSON(parameters)
 
-Rosette can process one call at a time. You can send a second call once you have received a response from the first.
-
-The maximum payload size is 600KB, with a maximum character count of 50,000.
-
-## Authentication
-Rosette uses API keys to allow access to the API. You can find your Rosette API key on our [Developer Portal](https://developer.rosette.com/login), or [Sign Up](https://developer.rosette.com/signup) for a new API key.
-
-## Features and Functions
-
-Visit our [Features and Functions](https://developer.rosette.com/features-and-functions#introduction) page for a more detailed look at the functionality of the Rosette API endpoints.
-
+result <- api("0123456789", "categories", parameters)
+print(result)
+```
 ## API Parameters
 | Parameter                     | Endpoint                                            | Required
 | -------------                 |-------------                                        |------------- 
@@ -48,22 +44,7 @@ Visit our [Features and Functions](https://developer.rosette.com/features-and-fu
 | accuracyMode              | relationships        | Yes |
 | linked              | entities        | No |
 | explain              | sentiment        | No |
-| shortString              | sentiment        | No |
 | morphology             | morphology        | Yes |
 
-## Example
-
-```
-source("Api.R")
-library(rjson)
-
-key <- "contentUri"
-value <- "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
-
-parameters <- list()
-parameters[[ key ]] <- value
-parameters <- toJSON(parameters)
-
-result <- api("01234567890", "categories", parameters)
-print(result)
-```
+## Additional Information
+See [Rosette API site](https://developer.rosette.com/)
