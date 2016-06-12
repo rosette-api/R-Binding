@@ -10,14 +10,16 @@ opt = parse_args(opt_parser)
 
 key <- "content"
 value <- "Por favor Señorita, says the man."
+headers <- c("X-RosetteAPI-App" = "r-application-test")
 
 parameters <- list()
 parameters[[ key ]] <- value
+parameters [[ "customHeaders" ]] <- headers
 parameters <- toJSON(parameters)
 
 if(is.na(opt$url)){
-   result <- api(opt$key, "language", parameters)
+   result <- api(opt$key, "language", parameters, headers)
 } else {
-   result <- api(opt$key, "language", parameters, opt$url)
+   result <- api(opt$key, "language", parameters, headers, opt$url)
 }
 print(result)

@@ -18,6 +18,6 @@ parameters <- toJSON(parameters)
 if(is.na(opt$url)){
    result <- api(opt$key, "categories", parameters)
 } else {
-   result <- api(opt$key, "categories", parameters, opt$url)
+   result <- api(opt$key, "categories", parameters, NULL, opt$url)
 }
 print(result)

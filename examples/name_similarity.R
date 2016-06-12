@@ -21,6 +21,6 @@ parameters <- toJSON(parameters)
 if(is.na(opt$url)){
    result <- api(opt$key, "name-similarity", parameters)
 } else {
-   result <- api(opt$key, "name-similarity", parameters, opt$url)
+   result <- api(opt$key, "name-similarity", parameters, NULL, opt$url)
 }
 print(result)
