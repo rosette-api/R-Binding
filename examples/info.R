@@ -11,6 +11,6 @@ opt = parse_args(opt_parser)
 if(is.na(opt$url)){
    result <- api(opt$key, "info")
 } else {
-   result <- api(opt$key, "info", opt$url)
+   result <- api(opt$key, "info", NULL, NULL, opt$url)
 }
 print(result)

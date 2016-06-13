@@ -11,14 +11,14 @@ library(rjson)
 #' @param url - url for Rosette Api
 #' @return Returns json of the specified Rosette API endpoint response
 #' @examples
-#'\dontrun{}
+#' \dontrun{
 #' key <- "content"
 #' value <- "Bill Murray will appear in new Ghostbusters film."
 #' parameters <- list()
 #' parameters[[ key ]] <- value
 #' parameters <- toJSON(parameters)
 #' api(01234567890, "entities", parameters)
-#'}
+#' }
 #' @export
 api <- function(user_key, endpoint, parameters=FALSE, customHeaders=NULL, url="https://api.rosette.com/rest/v1/") {
   if(is.null(user_key)) {
@@ -26,9 +26,9 @@ api <- function(user_key, endpoint, parameters=FALSE, customHeaders=NULL, url="h
   } else {
 
     if(endpoint == "info") {
-      return(to_json(get_endpoint(user_key, "info", url)))
+      return(to_json(get_endpoint(user_key, "info", customHeaders, url)))
     } else if (endpoint == "ping") {
-      return(to_json(get_endpoint(user_key, "ping", url)))
+      return(to_json(get_endpoint(user_key, "ping", customHeaders, url)))
     } else if (endpoint == "language") {
       return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "language", customHeaders, url))))
     } else if (endpoint == "categories") {
@@ -208,18 +208,12 @@ post_endpoint <- function(user_key, parameters, endpoint, customHeaders, url) {
   if(is.null(customHeaders)) {
     response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION), body = parameters)
     } else {
-      if(length(grep("^X-RosetteAPI-", "test")) == 0){
-        #stop("Custom headers must start with \"X-\""["Error"])
+      if(grepl("^X-RosetteAPI-", names(customHeaders)) == FALSE){
+        stop("Custom headers must start with \"X-\"")
         } else {
-          #defaultHeaders <- c("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION, "user-agent" = "ruseragent")
-        #.headers <- c(defaultHeaders, customHeaders)
-        #response <- POST(paste(url, endpoint, sep=""), add_headers(.headers), body = parameters)
-        }
-
-        if(length(grep("^X-RosetteAPI-", names(customHeaders))) == 1){
-          print("here")
-        } else {
-          print("not here")
+          defaultHeaders <- c("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION, "user-agent" = "ruseragent")
+          .headers <- c(defaultHeaders, customHeaders)
+          response <- POST(paste(url, endpoint, sep=""), add_headers(.headers), body = parameters)
         }
     }
   return(response)
@@ -228,10 +222,20 @@ post_endpoint <- function(user_key, parameters, endpoint, customHeaders, url) {
 #' GET request to specified Rosette API endpoint
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
+#' @param customHeaders - custom headers for Rosette Api
 #' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
-get_endpoint <- function(user_key, endpoint, url) {
-  BINDING_VERSION <- 1.1
-  response <- GET(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION))
+get_endpoint <- function(user_key, endpoint, customHeaders, url) {
+  if(is.null(customHeaders)) {
+    response <- GET(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION, "user-agent" = "ruseragent"))
+    } else {
+      if(grepl("^X-RosetteAPI-", names(customHeaders)) == FALSE){
+        stop("Custom headers must start with \"X-\"")
+        } else {
+          defaultHeaders <- c("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION, "user-agent" = "ruseragent")
+          .headers <- c(defaultHeaders, customHeaders)
+          response <- GET(paste(url, endpoint, sep=""), add_headers(.headers))
+        }
+    }
   return(response)
 }

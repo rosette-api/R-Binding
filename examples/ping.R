@@ -10,6 +10,6 @@ opt = parse_args(opt_parser)
 if(is.null(opt$url)){
     result <- api(opt$key, "ping")
 } else {
-    result <- api(opt$key, "ping", opt$url)
+    result <- api(opt$key, "ping", NULL, NULL, opt$url)
 }
 print(result)
