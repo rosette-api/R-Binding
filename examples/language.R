@@ -10,7 +10,7 @@ opt = parse_args(opt_parser)
 
 key <- "content"
 value <- "Por favor Señorita, says the man."
-headers <- c("test" = "r-application-test")
+headers <- c("X-RosetteAPI-App" = "r-application-test")
 
 parameters <- list()
 parameters[[ key ]] <- value
