@@ -20,6 +20,6 @@ parameters <- toJSON(parameters)
 if(is.na(opt$url)){
    result <- api(opt$key, "sentences", parameters)
 } else {
-   result <- api(opt$key, "sentences", parameters, opt$url)
+   result <- api(opt$key, "sentences", parameters, NULL, opt$url)
 }
 print(result)

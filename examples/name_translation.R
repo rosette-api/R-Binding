@@ -23,6 +23,6 @@ parameters <- toJSON(parameters)
 if(is.na(opt$url)){
    result <- api(opt$key, "name-translation", parameters)
 } else {
-   result <- api(opt$key, "name-translation", parameters, opt$url)
+   result <- api(opt$key, "name-translation", parameters, NULL, opt$url)
 }
 print(result)
