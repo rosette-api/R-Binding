@@ -4,14 +4,14 @@
 test_that("GET function mocks correctly", {
 with_mock(
   GET = function(x, y) "mocked response",
-  expect_equal(get_endpoint("fakekey", "endpoint", "https://api.rosette.com/rest/v1/"), "mocked response")
+  expect_equal(get_endpoint("fakekey", "endpoint", NULL, "https://api.rosette.com/rest/v1/"), "mocked response")
 )})
 
 # mock all HTTP POST requests
 test_that("POST functions mock correctly", {
 with_mock(
   POST = function(x, y, ...) "mocked response",
-  expect_equal(post_endpoint("fakekey", "parameter data", "endpoint", "https://api.rosette.com/rest/v1/"), "mocked response")
+  expect_equal(post_endpoint("fakekey", "parameter data", "endpoint", NULL, "https://api.rosette.com/rest/v1/"), "mocked response")
 )})
 
 test_that("The function detects a multipart", {
@@ -50,6 +50,15 @@ test_that("Check error does not return an error", {
   with_mock(
     content = function(x) "Rosette Api",
     expect_equal(error_check(response), response)
+  )
+})
+
+# mock 409 error return
+test_that("409 error is handled correctly", {
+  value <- "{ \"code\": \"incompatibleClientVersion\" }"
+  with_mock(
+    content = function(x) value,
+    expect_equal(error_check(value), value)
   )
 })
 
