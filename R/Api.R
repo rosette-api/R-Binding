@@ -50,6 +50,7 @@ api <- function(user_key, endpoint, parameters=FALSE, customHeaders=NULL, url="h
     } else if (endpoint == "sentences") {
       return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "sentences", customHeaders, url))))
     } else  if (endpoint == "entities/linked"){
+      .Deprecated(api(user_key, "entities"), NULL, "/entities/linked is deprecated. The endpoint has been merged with /entities")
       return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "entities/linked", customHeaders, url))))
     } else {
       stop("Specify a valid Rosette API endpoint")
@@ -196,6 +197,19 @@ error_check <- function(response) {
   }
 }
 
+#' serialize Rosette API parameters
+#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @return Returns the serialized parameters for the Rosette API
+serialize_parameters <- function(parameters) {
+  serialized_params <- list()
+  for(param in names(fromJSON(parameters))) {
+    if(param == "genre" || param == "profileId" || param == "language" || param == "content" || param == "options" || param == "contentUri" || param == "contentType") {
+    serialized_params[[param]] <- fromJSON(parameters)[[param]]
+    }
+  }
+  return(toJSON(serialized_params))
+}
+
 #' POST request to specified Rosette API endpoint
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
@@ -206,14 +220,14 @@ error_check <- function(response) {
 post_endpoint <- function(user_key, parameters, endpoint, customHeaders, url) {
   BINDING_VERSION <- 1.1
   if(is.null(customHeaders)) {
-    response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION), body = parameters)
+    response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION), body = serialize_parameters(parameters))
     } else {
       if(grepl("^X-RosetteAPI-", names(customHeaders)) == FALSE){
         stop("Custom headers must start with \"X-\"")
         } else {
           defaultHeaders <- c("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION, "user-agent" = "ruseragent")
           .headers <- c(defaultHeaders, customHeaders)
-          response <- POST(paste(url, endpoint, sep=""), add_headers(.headers), body = parameters)
+          response <- POST(paste(url, endpoint, sep=""), add_headers(.headers), body = serialize_parameters(parameters))
         }
     }
   return(response)
@@ -226,7 +240,6 @@ post_endpoint <- function(user_key, parameters, endpoint, customHeaders, url) {
 #' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 get_endpoint <- function(user_key, endpoint, customHeaders, url) {
-  BINDING_VERSION <- 1.1
   if(is.null(customHeaders)) {
     response <- GET(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION, "user-agent" = "ruseragent"))
     } else {
