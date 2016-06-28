@@ -12,9 +12,16 @@ entities_text_data <- "Bill Murray will appear in new Ghostbusters film: Dr. Pet
 
 key <- "content"
 value <- entities_text_data
+key1 <- "genre"
+value1 <- "social-media"
 
 parameters <- list()
 parameters[[ key ]] <- value
+parameters[[ key1 ]] <- value1
+# To improve performance, and if no QID is needed, set
+ key2 <- "linkEntities"
+ value2 <- FALSE
+ parameters[[ key2 ]] <- value2
 parameters <- toJSON(parameters)
 
 if(is.na(opt$url)){
