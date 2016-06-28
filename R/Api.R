@@ -240,6 +240,7 @@ post_endpoint <- function(user_key, parameters, endpoint, customHeaders, url) {
 #' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 get_endpoint <- function(user_key, endpoint, customHeaders, url) {
+  BINDING_VERSION <- 1.1
   if(is.null(customHeaders)) {
     response <- GET(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION, "user-agent" = "ruseragent"))
     } else {
