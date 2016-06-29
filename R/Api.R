@@ -129,7 +129,7 @@ create_multipart <- function(parameters) {
   content <- fromJSON(parameters)['content']
   parameters <- fromJSON(parameters)
   parameters['content'] <- NULL
-  parameters <- toJSON(parameters)
+  parameters <- serialize_parameters(toJSON(parameters))
 
   boundary <- "--89dszpjalrbmlsor"
   crlf <- "\r\n"
@@ -139,7 +139,14 @@ create_multipart <- function(parameters) {
   multi <- paste(multi, 'Content-Disposition: mixed; name="request"', sep='')
   multi <- paste(multi, crlf, sep='')
   multi <- paste(multi, crlf, sep='')
-  multi <- paste(multi, parameters, sep='')
+  if(length(fromJSON(parameters)) != 0){
+    
+    multi <- paste(multi, parameters, sep='')
+    
+  } else {
+    multi <- paste(multi, "{}", sep='')
+  }
+
   multi <- paste(multi, crlf, sep='')
   multi <- paste(multi, crlf, sep='')
   multi <- paste(multi, boundary, sep='')

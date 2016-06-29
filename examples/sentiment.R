@@ -14,6 +14,8 @@ key <- "content"
 value <- sentiment_file_data
 key1 <- "documentFile"
 value2 <- "true"
+key2 <- "genre"
+value3 <-"socialMedia"
 
 parameters <- list()
 parameters[[ key ]] <- value
