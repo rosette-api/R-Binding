@@ -50,7 +50,6 @@ api <- function(user_key, endpoint, parameters=FALSE, customHeaders=NULL, url="h
     } else if (endpoint == "sentences") {
       return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "sentences", customHeaders, url))))
     } else  if (endpoint == "entities/linked"){
-      .Deprecated(api(user_key, "entities"), NULL, "/entities/linked is deprecated. The endpoint has been merged with /entities")
       return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "entities/linked", customHeaders, url))))
     } else {
       stop("Specify a valid Rosette API endpoint")
@@ -95,7 +94,6 @@ check_names <- function(parameters, endpoint) {
     if(!("name" %in% names(fromJSON(parameters))) || !("targetLanguage" %in% names(fromJSON(parameters)))) {
       stop("Must supply name and targetLanguage parameters for name-translation endpoint")
     } else {
-      print(parameters)
       return(parameters)
     }
   } else if(endpoint == "name-similarity") {
@@ -141,13 +139,10 @@ create_multipart <- function(parameters) {
   multi <- paste(multi, crlf, sep='')
   multi <- paste(multi, crlf, sep='')
   if(length(fromJSON(parameters)) != 0){
-    
     multi <- paste(multi, parameters, sep='')
-    
   } else {
     multi <- paste(multi, "{}", sep='')
   }
-
   multi <- paste(multi, crlf, sep='')
   multi <- paste(multi, crlf, sep='')
   multi <- paste(multi, boundary, sep='')
@@ -218,6 +213,19 @@ serialize_parameters <- function(parameters) {
   return(toJSON(serialized_params))
 }
 
+#' serialize Rosette API parameters
+#' @param parameters - parameters list to be passed to either name-translation or name-similarity
+#' @return Returns the serialized parameters for the Rosette API
+serialize_name_parameters <- function(parameters) {
+  serialized_params <- list()
+  for(param in names(fromJSON(parameters))) {
+    if(param == "name" || param == "targetLanguage" || param == "targetScript" || param == "entityType" || param == "sourceScript" || param == "sourceLanguageOfOrigin" || param == "sourceLanguageOfUse" || param == "targetScheme" || param == "name1" || param == "name2") {
+    serialized_params[[param]] <- fromJSON(parameters)[[param]]
+    }
+  }
+  return(toJSON(serialized_params))
+}
+
 #' POST request to specified Rosette API endpoint
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
@@ -228,14 +236,22 @@ serialize_parameters <- function(parameters) {
 post_endpoint <- function(user_key, parameters, endpoint, customHeaders, url) {
   BINDING_VERSION <- 1.1
   if(is.null(customHeaders)) {
-    response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION), body = serialize_parameters(parameters))
+      if(endpoint == "name-translation" || endpoint == "name-similarity"){
+        response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION), body = serialize_name_parameters(parameters))
+      } else {
+        response <- POST(paste(url, endpoint, sep=""), add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION), body = serialize_parameters(parameters))
+      }
     } else {
       if(grepl("^X-RosetteAPI-", names(customHeaders)) == FALSE){
         stop("Custom headers must start with \"X-\"")
         } else {
           defaultHeaders <- c("X-RosetteAPI-Key" = user_key, "Content-Type" = "application/json", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION, "user-agent" = "ruseragent")
           .headers <- c(defaultHeaders, customHeaders)
-          response <- POST(paste(url, endpoint, sep=""), add_headers(.headers), body = serialize_parameters(parameters))
+          if(endpoint == "name-translation" || endpoint == "name-similarity"){
+            response <- POST(paste(url, endpoint, sep=""), add_headers(.headers), body = serialize_name_parameters(parameters))
+          } else {
+            response <- POST(paste(url, endpoint, sep=""), add_headers(.headers), body = serialize_parameters(parameters))
+          }
         }
     }
   return(response)
