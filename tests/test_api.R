@@ -39,7 +39,7 @@ test_that("The function creates a multipart", {
   parameters[[ key ]] <- value
   parameters[[ key1 ]] <- value2
   parameters <- toJSON(parameters)
-  expect_equal(create_multipart(parameters), "--89dszpjalrbmlsor\r\nContent-Type: application/json\r\nContent-Disposition: mixed; name=\"request\"\r\n\r\n{\"documentFile\":\"true\"}\r\n\r\n--89dszpjalrbmlsor\r\nContent-Type: text/plain\r\nContent-Disposition: mixed; name=\"content\";\r\n\r\nRosette Api\r\n--89dszpjalrbmlsor--")
+  expect_equal(create_multipart(parameters), "--89dszpjalrbmlsor\r\nContent-Type: application/json\r\nContent-Disposition: mixed; name=\"request\"\r\n\r\n{}\r\n\r\n--89dszpjalrbmlsor\r\nContent-Type: text/plain\r\nContent-Disposition: mixed; name=\"content\";\r\n\r\nRosette Api\r\n--89dszpjalrbmlsor--")
 })
 
 test_that("Check error does not return an error", {

@@ -14,10 +14,13 @@ key <- "name"
 value <- translated_name_data
 key1 <- "targetLanguage"
 value1 <- "eng"
+key2 <- "targetScript"
+value2 <- "Latn"
 
 parameters <- list()
 parameters[[ key ]] <- value
 parameters[[ key1 ]] <- value1
+parameters[[ key2 ]] <- value2
 parameters <- toJSON(parameters)
 
 if(is.na(opt$url)){
