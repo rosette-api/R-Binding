@@ -95,6 +95,7 @@ check_names <- function(parameters, endpoint) {
     if(!("name" %in% names(fromJSON(parameters))) || !("targetLanguage" %in% names(fromJSON(parameters)))) {
       stop("Must supply name and targetLanguage parameters for name-translation endpoint")
     } else {
+      print(parameters)
       return(parameters)
     }
   } else if(endpoint == "name-similarity") {
