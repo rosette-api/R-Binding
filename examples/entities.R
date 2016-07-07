@@ -12,14 +12,17 @@ entities_text_data <- "Bill Murray will appear in new Ghostbusters film: Dr. Pet
 
 key <- "content"
 value <- entities_text_data
+key1 <- "genre"
+value1 <- "social-media"
 
 parameters <- list()
 parameters[[ key ]] <- value
+parameters[[ key1 ]] <- value1
 parameters <- toJSON(parameters)
 
 if(is.na(opt$url)){
    result <- api(opt$key, "entities", parameters)
 } else {
-   result <- api(opt$key, "entities", parameters, opt$url)
+   result <- api(opt$key, "entities", parameters, NULL, opt$url)
 }
 print(result)

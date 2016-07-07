@@ -4,7 +4,7 @@
 \alias{mutipart_call}
 \title{make a multipart POST request}
 \usage{
-mutipart_call(user_key, parameters, endpoint, url)
+mutipart_call(user_key, parameters, endpoint, customHeaders, url)
 }
 \arguments{
 \item{user_key}{- Rosette API authentication key}

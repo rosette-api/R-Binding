@@ -23,6 +23,6 @@ parameters <- toJSON(parameters)
 if(is.na(opt$url)){
    result <- api(opt$key, "morphology", parameters)
 } else {
-   result <- api(opt$key, "morphology", parameters, opt$url)
+   result <- api(opt$key, "morphology", parameters, NULL, opt$url)
 }
 print(result)

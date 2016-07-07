@@ -4,7 +4,7 @@
 \alias{api}
 \title{api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized}
 \usage{
-api(user_key, endpoint, parameters = FALSE,
+api(user_key, endpoint, parameters = FALSE, customHeaders = NULL,
   url = "https://api.rosette.com/rest/v1/")
 }
 \arguments{
@@ -21,5 +21,15 @@ Returns json of the specified Rosette API endpoint response
 }
 \description{
 api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized
+}
+\examples{
+\dontrun{
+key <- "content"
+value <- "Bill Murray will appear in new Ghostbusters film."
+parameters <- list()
+parameters[[ key ]] <- value
+parameters <- toJSON(parameters)
+api(01234567890, "entities", parameters)
+}
 }
 
