@@ -1,7 +1,7 @@
 Package: rosetteApi
 Type: Package
 Title: Rosette API
-Version: 1.0.1
+Version: ${VERSION}
 Date: 2016-04-26
 Author: Sam Hausmann
 Maintainer: Sam Hausmann <shausmann@basistech.com>
