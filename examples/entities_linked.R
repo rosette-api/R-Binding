@@ -23,6 +23,6 @@ parameters <- toJSON(parameters)
 if(is.na(opt$url)){
    result <- api(opt$key, "entities/linked", parameters)
 } else {
-   result <- api(opt$key, "entities/linked", NULL, opt$url)
+   result <- api(opt$key, "entities/linked", parameters, NULL, opt$url)
 }
 print(result)
