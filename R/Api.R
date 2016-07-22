@@ -168,7 +168,7 @@ create_multipart <- function(parameters) {
 #' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 mutipart_call <- function(user_key, parameters, endpoint, customHeaders,url) {
-  BINDING_VERSION <- 1.2.0
+  BINDING_VERSION <- "1.2.0"
   if(is.null(customHeaders)) {
     response <- POST(paste(url, endpoint, sep=""), encode = "multipart", add_headers("X-RosetteAPI-Key" = user_key, "Content-Type" = "multipart/mixed", "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = BINDING_VERSION, "user-agent" = "ruseragent"), body = parameters)
     } else {
