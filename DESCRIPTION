@@ -1,11 +1,11 @@
 Package: rosetteApi
 Type: Package
 Title: Rosette API
-Version: "1.1.0"
-Date: 2016-04-26
+Version: 1.2.0
+Date: 2016-07-23
 Author: Sam Hausmann
 Maintainer: Sam Hausmann <shausmann@basistech.com>
-Description: Rosette is an API for multilingual text analysis and information extraction. More information can be found at https://developer.rosette.com.
+Description: Rosette is an API for multilingual text analysis and information extraction. More information can be found at <https://developer.rosette.com>.
 License: Apache License
 Depends:
     R (>= 3.1.0),
