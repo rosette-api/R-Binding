@@ -8,6 +8,7 @@ library(rjson)
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @param customHeaders - custom headers for Rosette Api
 #' @param url - url for Rosette Api
 #' @return Returns json of the specified Rosette API endpoint response
 #' @examples
@@ -165,6 +166,7 @@ create_multipart <- function(parameters) {
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @param customHeaders - custom headers for Rosette Api
 #' @param url - url for Rosette Api
 #' @return Returns the response from the Rosette API
 mutipart_call <- function(user_key, parameters, endpoint, customHeaders,url) {

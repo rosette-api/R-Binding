@@ -14,6 +14,8 @@ api(user_key, endpoint, parameters = FALSE, customHeaders = NULL,
 
 \item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
 
+\item{customHeaders}{- custom headers for Rosette Api}
+
 \item{url}{- url for Rosette Api}
 }
 \value{
