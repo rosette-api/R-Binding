@@ -13,6 +13,8 @@ mutipart_call(user_key, parameters, endpoint, customHeaders, url)
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
+\item{customHeaders}{- custom headers for Rosette Api}
+
 \item{url}{- url for Rosette Api}
 }
 \value{
