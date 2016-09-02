@@ -53,6 +53,8 @@ api <- function(user_key, endpoint, parameters=FALSE, customHeaders=NULL, url="h
     } else if (endpoint == "entities/linked"){
       .Deprecated(api(user_key, "entities"), NULL, "/entities/linked is deprecated. The endpoint has been merged with /entities")
       return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "entities/linked", customHeaders, url))))
+    } else if (endpoint == "text-embedding"){
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "text-embedding", customHeaders, url))))
     } else {
       stop("Specify a valid Rosette API endpoint")
 
