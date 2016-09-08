@@ -14,8 +14,6 @@ r_packages:
   - optparse
 after_install:
   - cd rosetteApi
-before_script:
-  - cd tests
 script: Rscript tests
 notifications:
   slack:
