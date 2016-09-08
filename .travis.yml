@@ -16,7 +16,7 @@ after_install:
   - cd rosetteApi
 before_script:
   - cd tests
-script: Rscript Tests.R
+script: Rscript tests
 notifications:
   slack:
     rooms:
