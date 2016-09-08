@@ -9,3 +9,6 @@
 - Removed entities linked example
 - Deprecated entites linked
 - Parameters serialized correctly
+
+# rosetteApi 1.3.0
+- New text-embedding example

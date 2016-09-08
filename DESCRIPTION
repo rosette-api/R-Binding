@@ -1,22 +1,24 @@
 Package: rosetteApi
 Type: Package
 Title: Rosette API
-Version: 1.2.0
+Version: 1.3.0
 Date: 2016-08-31
 Author: Sam Hausmann [aut, cre],
 	Chris Park [ctb],
 	Hannah Gaudet [ctb]
 Maintainer: Chris Park <cpark@basistech.com>
 Description: Rosette is an API for multilingual text analysis and information extraction. More information can be found at <https://developer.rosette.com>.
-License: Apache License
+License: file LICENSE
 Depends:
     R (>= 3.1.0),
     httr,
     rjson
 Suggests:
 	knitr,
-	rmarkdown
+	rmarkdown,
+    testthat
 URL: https://developer.rosette.com
 BugReports: https://developer.rosette.com/support-ticket
 RoxygenNote: 5.0.1
-VignetteBuilder: rmarkdown
+VignetteBuilder: 
+    knitr
