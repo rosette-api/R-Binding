@@ -9,7 +9,7 @@ Install the module with: `install.packages('rosetteAPI')`
 
 OR
 
-Ensure you're in the `current release` folder and run the command `R CMD INSTALL rosetteApi_1.0.1.tar.gz`
+Ensure you're in the `current release` folder and run the command `R CMD INSTALL rosetteApi_<version>.tar.gz`
 
 
 ## Example using the Rosette API language detection endpoint
