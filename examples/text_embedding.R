@@ -11,7 +11,7 @@ opt = parse_args(opt_parser)
 embeddings_data <- "Cambridge, Massachusetts"
 
 key <- "content"
-value <- entities_linked_text_data
+value <- embeddings_data
 
 parameters <- list()
 parameters[[ key ]] <- value
