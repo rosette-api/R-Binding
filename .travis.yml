@@ -12,9 +12,10 @@ r_packages:
   - rjson
   - testthat
   - optparse
+  - roxygen2
 after_install:
   - cd rosetteApi
-script: Rscript tests
+script: Rscript -e 'devtools::test()'
 notifications:
   slack:
     rooms:
