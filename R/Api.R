@@ -25,6 +25,9 @@ api <- function(user_key, endpoint, parameters=FALSE, customHeaders=NULL, url="h
   if(is.null(user_key)) {
     stop("API key param empty")
   } else {
+    if(!endsWith(url, "/")) {
+      url <- paste(url, "/", sep = "")
+    }
 
     if(endpoint == "info") {
       return(to_json(get_endpoint(user_key, "info", customHeaders, url)))
