@@ -58,6 +58,8 @@ api <- function(user_key, endpoint, parameters=FALSE, customHeaders=NULL, url="h
       return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "entities/linked", customHeaders, url))))
     } else if (endpoint == "text-embedding"){
       return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "text-embedding", customHeaders, url))))
+    } else if (endpoint == "syntax/dependencies"){ 
+      return(to_json(error_check(check_for_multipart(user_key, check_content_parameters(parameters), "syntax/dependencies", customHeaders, url))))
     } else {
       stop("Specify a valid Rosette API endpoint")
 
