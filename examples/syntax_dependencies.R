@@ -8,7 +8,7 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-syntax_dependencies_data <- "Sony Pictures is planning to shoot a good portion of the new \"Ghostbusters\" in Boston as well."
+syntax_dependencies_data <- "Yoshinori Ohsumi, a Japanese cell biologist, was awarded the Nobel Prize in Physiology or Medicine on Monday."
 
 key <- "content"
 value <- syntax_dependencies_data
