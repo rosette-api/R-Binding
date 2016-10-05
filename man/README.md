@@ -26,8 +26,8 @@ print(result)
 ## API Parameters
 | Parameter                     | Endpoint                                            | Required
 | -------------                 |-------------                                        |------------- 
-| content                    | categories, entities, language, morphology, relationships, sentences, sentiment, tokens            | Either content or contentUri required |
-| contentUri                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens       | Either content or contentUri required |
+| content                    | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax/dependencies            | Either content or contentUri required |
+| contentUri                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax/dependencies       | Either content or contentUri required |
 | language                          | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, name similarity                    | No |
 | documentFile                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens                  | No |
 | name1                 | name similarity               | Yes |

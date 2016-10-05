@@ -11,4 +11,8 @@
 - Parameters serialized correctly
 
 # rosetteApi 1.3.0
-- New text-embedding example
+- New text_embedding example
+
+# rosetteApi 1.4.0
+- New syntax/dependencies endpoint
+- New syntax_dependencies example
