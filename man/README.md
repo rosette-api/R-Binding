@@ -42,7 +42,6 @@ print(result)
 | targetScheme                        | name translation          | No |
 | options              | relationships        | No |
 | accuracyMode              | relationships        | Yes |
-| linked              | entities        | No |
 | explain              | sentiment        | No |
 | morphology             | morphology        | Yes |
 
