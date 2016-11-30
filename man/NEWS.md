@@ -16,3 +16,6 @@
 # rosetteApi 1.4.0
 - New syntax/dependencies endpoint
 - New syntax_dependencies example
+
+#rosetteApi 1.4.1
+- Removed deprecated entities linked
