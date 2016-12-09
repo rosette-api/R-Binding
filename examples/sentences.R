@@ -18,5 +18,5 @@ if (is.na(opt$url)){
 } else {
    result <- api(opt$key, "sentences", parameters, NULL, opt$url)
 }
-print(toJSON(result$header, pretty = TRUE))
-print(toJSON(result$content, pretty = TRUE))
+print(jsonlite::toJSON(result$header, pretty = TRUE))
+print(jsonlite::toJSON(result$content, pretty = TRUE))

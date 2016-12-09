@@ -17,15 +17,12 @@ Ensure you're in the `current release` folder and run the command `R CMD INSTALL
 library(rosetteApi)
 library(jsonlite)
 
-key <- "contentUri"
-value <- "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
-
 parameters <- list()
-parameters[[ key ]] <- value
-parameters <- toJSON(parameters)
+parameters[[ "contentUri" ]] <- "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
 
 result <- api("0123456789", "categories", parameters)
-print(result)
+# result is a list containing content and headers in native R.  Use jsonlite::toJSON to convert to JSON format.
+print(jsonlite::toJSON(result$content, pretty = TRUE)
 ```
 ## API Parameters
 | Parameter                     | Endpoint                                            | Required

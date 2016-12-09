@@ -1,18 +1,18 @@
 #R binding unit tests
 
-# mock all HTTP GET requests
-test_that("GET function mocks correctly", {
+# mock all HTTP httr::GET requests
+test_that("httr::GET function mocks correctly", {
   with_mock(
-    GET = function(x, y) "mocked response",
+    `httr::GET` = function(x, y) "mocked response",
     expect_equal(get_endpoint("fakekey", "endpoint", "https://api.rosette.com/rest/v1/"), "mocked response")
   )
 })
 
-# mock all HTTP POST requests
-test_that("POST functions mock correctly", {
-  parameters <- toJSON(list())
+# mock all HTTP httr::POST requests
+test_that("httr::POST functions mock correctly", {
+  parameters <- jsonlite::toJSON(list())
   with_mock(
-    POST = function(x, y, ...) "mocked response",
+    `httr::POST` = function(x, y, ...) "mocked response",
     expect_equal(post_endpoint("fakekey", parameters, "endpoint", "https://api.rosette.com/rest/v1/"), "mocked response")
   )
 })
@@ -34,19 +34,13 @@ test_that("The function creates a multipart", {
 test_that("Check error does not return an error", {
   response <- list()
   response[["content"]] <- "Rosette Api"
-  with_mock(
-    content = function(x) "Rosette Api",
-    expect_equal(error_check(response), response)
-  )
+  expect_equal(error_check(response), response)
 })
 
 # mock 409 error return
 test_that("409 error is handled correctly", {
   value <- "{ \"code\": \"incompatibleClientVersion\" }"
-  with_mock(
-    content = function(x) value,
-    expect_equal(error_check(value), value)
-  )
+  expect_equal(error_check(value), value)
 })
 
 test_that("The parameters fulfill the name-translation requirements", {

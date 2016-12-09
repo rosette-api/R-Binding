@@ -2,13 +2,13 @@
 % Please edit documentation in R/Api.R
 \name{api}
 \alias{api}
-\title{api wrapper function that checks for a userKey and determines the Rosette API endpoint to be utilized}
+\title{api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized}
 \usage{
-api(userKey, endpoint, parameters = FALSE, custom_headers = NULL,
-  url = "https://api.rosette.com/rest/v1/")
+api(user_key, endpoint, parameters = FALSE, custom_headers = NULL,
+  url_parameters = NULL, url = "https://api.rosette.com/rest/v1/")
 }
 \arguments{
-\item{userKey}{- Rosette API authentication key}
+\item{user_key}{- Rosette API authentication key}
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
@@ -16,22 +16,21 @@ api(userKey, endpoint, parameters = FALSE, custom_headers = NULL,
 
 \item{custom_headers}{- custom headers for Rosette Api}
 
+\item{url_parameters}{- query parameters}
+
 \item{url}{- url for Rosette Api}
 }
 \value{
-Returns json of the specified Rosette API endpoint response
+Returns a list(content, header)
 }
 \description{
-api wrapper function that checks for a userKey and determines the Rosette API endpoint to be utilized
+api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized
 }
 \examples{
 \dontrun{
-key <- "content"
-value <- "Bill Murray will appear in new Ghostbusters film."
 parameters <- list()
-parameters[[ key ]] <- value
-parameters <- toJSON(parameters)
-api(01234567890, "entities", parameters)
+parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters film."
+response = api(01234567890, "entities", parameters) will return response$content and response$header
 }
 }
 

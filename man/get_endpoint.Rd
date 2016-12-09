@@ -2,23 +2,26 @@
 % Please edit documentation in R/Api.R
 \name{get_endpoint}
 \alias{get_endpoint}
-\title{GET request to specified Rosette API endpoint}
+\title{httr::GET request to specified Rosette API endpoint}
 \usage{
-get_endpoint(userKey, endpoint, custom_headers, url)
+get_endpoint(user_key, endpoint, url, custom_headers = NULL,
+  url_parameters = NULL)
 }
 \arguments{
-\item{userKey}{- Rosette API authentication key}
+\item{user_key}{- Rosette API authentication key}
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
+\item{url}{- url for Rosette Api}
+
 \item{custom_headers}{- custom headers for Rosette Api}
 
-\item{url}{- url for Rosette Api}
+\item{url_parameters}{- url query parameters}
 }
 \value{
-Returns the response from the Rosette API
+Returns the Rosette API response
 }
 \description{
-GET request to specified Rosette API endpoint
+httr::GET request to specified Rosette API endpoint
 }
 

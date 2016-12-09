@@ -80,14 +80,14 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
       stop("Specify a valid Rosette API endpoint")
     )
 
-    return(list("content" = content(response), "header" = headers(response)))
+    return(list("content" = httr::content(response), "header" = httr::headers(response)))
   }
 }
 
 #' Provides the binding Version
 #' @return current binding version
 get_binding_version <- function() {
-  bindingVersion <- "1.4.0"
+  bindingVersion <- "1.4.2"
   return(bindingVersion)
 }
 
@@ -154,7 +154,7 @@ create_multipart <- function(parameters) {
   multi <- paste(multi, 'Content-Disposition: mixed; name="request"', sep='')
   multi <- paste(multi, crlf, sep='')
   multi <- paste(multi, crlf, sep='')
-  if (length(fromJSON(parameters)) != 0){
+  if (length(jsonlite::fromJSON(parameters)) != 0){
     multi <- paste(multi, parameters, sep='')
   } else {
     multi <- paste(multi, "{}", sep='')
@@ -209,7 +209,7 @@ serialize_parameters <- function(parameters) {
     serialized_params[[param]] <- parameters[[param]]
     }
   }
-  return(toJSON(serialized_params, auto_unbox = TRUE))
+  return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
 }
 
 #' serialize Rosette API parameters
@@ -222,7 +222,7 @@ serialize_name_parameters <- function(parameters) {
     serialized_params[[param]] <- parameters[[param]]
     }
   }
-  return(toJSON(serialized_params, auto_unbox = TRUE))
+  return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
 }
 
 #' Helper to check for file submission
@@ -232,14 +232,13 @@ check_for_multipart <- function(parameters) {
   return("documentFile" %in% names(parameters))
 }
 
-#' POST request to specified Rosette API endpoint
+#' httr::POST request to specified Rosette API endpoint
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
 #' @param url - url for Rosette Api
 #' @param custom_headers - custom headers for Rosette Api
 #' @param url_parameters - query parameters
-#' @param encoding - request encoding
 #' @return Returns the Rosette API response
 post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NULL, url_parameters=NULL) {
   if (check_for_multipart(parameters)) {
@@ -257,17 +256,17 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
   }
 
   if (is.null(url_parameters)) {
-    response <- POST(
+    response <- httr::POST(
       paste(url, endpoint, sep=""), 
       encode = encoding,
-      add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)), 
+      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)), 
       body = request_body
     )
   } else {
-    response <- POST(
+    response <- httr::POST(
       paste(url, endpoint, sep=""), 
       encode = encoding,
-      add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)), 
+      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)), 
       body = request_body,
       query = url_parameters
     )
@@ -275,7 +274,7 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
   return(response)
 }
 
-#' GET request to specified Rosette API endpoint
+#' httr::GET request to specified Rosette API endpoint
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param url - url for Rosette Api
@@ -284,14 +283,14 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
 #' @return Returns the Rosette API response
 get_endpoint <- function(user_key, endpoint, url, custom_headers=NULL, url_parameters=NULL) {
   if (is.null(url_parameters)) {
-    response <- GET(
+    response <- httr::GET(
       paste(url, endpoint, sep=""), 
-      add_headers(get_headers(user_key, custom_headers))
+      httr::add_headers(get_headers(user_key, custom_headers))
     )
   } else {
-    response <- GET(
+    response <- httr::GET(
       paste(url, endpoint, sep=""), 
-      add_headers(get_headers(user_key, custom_headers)),
+      httr::add_headers(get_headers(user_key, custom_headers)),
       query = url_parameters
     )
   }

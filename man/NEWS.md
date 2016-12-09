@@ -17,5 +17,12 @@
 - New syntax/dependencies endpoint
 - New syntax_dependencies example
 
-#rosetteApi 1.4.1
+# rosetteApi 1.4.1
 - Removed deprecated entities linked
+
+# rosetteApi 1.4.2
+- Refactor of internal code
+- Modified api response to be a list(content, header)
+- Changed from rjson to jsonlite
+- Cleaned up examples
+- parameter argument is now a list and does not need to be converted to JSON
