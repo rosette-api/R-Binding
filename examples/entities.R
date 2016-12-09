@@ -1,5 +1,5 @@
 source("../R/Api.R")
-library(rjson)
+library(jsonlite)
 library("optparse")
 
 option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
@@ -10,19 +10,16 @@ opt = parse_args(opt_parser)
 
 entities_text_data <- "Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS"
 
-key <- "content"
-value <- entities_text_data
-key1 <- "genre"
-value1 <- "social-media"
-
 parameters <- list()
-parameters[[ key ]] <- value
-parameters[[ key1 ]] <- value1
-parameters <- toJSON(parameters)
+parameters[[ "content" ]] <- entities_text_data
+parameters[[ "genre" ]] <- "social-media"
+# advanced output
+url_parameters <- list(output = "rosette")
 
-if(is.na(opt$url)){
-   result <- api(opt$key, "entities", parameters)
+if (is.na(opt$url)){
+   result <- api(opt$key, "entities", parameters, url_parameters = url_parameters)
 } else {
    result <- api(opt$key, "entities", parameters, NULL, opt$url)
 }
-print(result)
+print(toJSON(result$header, pretty = TRUE))
+print(toJSON(result$content, pretty = TRUE))

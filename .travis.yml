@@ -9,10 +9,10 @@ repos:
   CRAN: https://cloud.r-project.org
 r_packages:
   - httr
-  - rjson
+  - jsonlite
   - testthat
   - optparse
-  - roxygen2
+  - knitr
 after_install:
   - cd rosetteApi
 script: Rscript -e 'devtools::test()'

@@ -1,5 +1,5 @@
 source("../R/Api.R")
-library(rjson)
+library(jsonlite)
 library("optparse")
 
 option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
@@ -10,22 +10,15 @@ opt = parse_args(opt_parser)
 
 translated_name_data <- "معمر محمد أبو منيار القذاف"
 
-key <- "name"
-value <- translated_name_data
-key1 <- "targetLanguage"
-value1 <- "eng"
-key2 <- "targetScript"
-value2 <- "Latn"
-
 parameters <- list()
-parameters[[ key ]] <- value
-parameters[[ key1 ]] <- value1
-parameters[[ key2 ]] <- value2
-parameters <- toJSON(parameters)
+parameters[[ "name" ]] <- translated_name_data
+parameters[[ "targetLanguage" ]] <- "eng"
+parameters[[ "targetScript" ]] <- "Latn"
 
-if(is.na(opt$url)){
+if (is.na(opt$url)){
    result <- api(opt$key, "name-translation", parameters)
 } else {
    result <- api(opt$key, "name-translation", parameters, NULL, opt$url)
 }
-print(result)
+print(toJSON(result$header, pretty = TRUE))
+print(toJSON(result$content, pretty = TRUE))

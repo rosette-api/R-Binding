@@ -2,19 +2,19 @@
 % Please edit documentation in R/Api.R
 \name{api}
 \alias{api}
-\title{api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized}
+\title{api wrapper function that checks for a userKey and determines the Rosette API endpoint to be utilized}
 \usage{
-api(user_key, endpoint, parameters = FALSE, customHeaders = NULL,
+api(userKey, endpoint, parameters = FALSE, custom_headers = NULL,
   url = "https://api.rosette.com/rest/v1/")
 }
 \arguments{
-\item{user_key}{- Rosette API authentication key}
+\item{userKey}{- Rosette API authentication key}
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
 \item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
 
-\item{customHeaders}{- custom headers for Rosette Api}
+\item{custom_headers}{- custom headers for Rosette Api}
 
 \item{url}{- url for Rosette Api}
 }
@@ -22,7 +22,7 @@ api(user_key, endpoint, parameters = FALSE, customHeaders = NULL,
 Returns json of the specified Rosette API endpoint response
 }
 \description{
-api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized
+api wrapper function that checks for a userKey and determines the Rosette API endpoint to be utilized
 }
 \examples{
 \dontrun{

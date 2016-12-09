@@ -1,5 +1,5 @@
 source("../R/Api.R")
-library(rjson)
+library(jsonlite)
 library("optparse")
 
 option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
@@ -10,16 +10,13 @@ opt = parse_args(opt_parser)
 
 tokens_data <- "北京大学生物系主任办公室内部会议"
 
-key <- "content"
-value <- tokens_data
-
 parameters <- list()
-parameters[[ key ]] <- value
-parameters <- toJSON(parameters)
+parameters[[ "content" ]] <- tokens_data
 
-if(is.na(opt$url)){
+if (is.na(opt$url)){
    result <- api(opt$key, "tokens", parameters)
 } else {
    result <- api(opt$key, "tokens", parameters, NULL, opt$url)
 }
-print(result)
+print(toJSON(result$header, pretty = TRUE))
+print(toJSON(result$content, pretty = TRUE))

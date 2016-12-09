@@ -1,5 +1,5 @@
 source("../R/Api.R")
-library(rjson)
+library(jsonlite)
 library("optparse")
 
 option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
@@ -10,19 +10,14 @@ opt = parse_args(opt_parser)
 
 syntax_dependencies_data <- "Yoshinori Ohsumi, a Japanese cell biologist, was awarded the Nobel Prize in Physiology or Medicine on Monday."
 
-key <- "content"
-value <- syntax_dependencies_data
-key1 <- "genre"
-value1 <- "social-media"
-
 parameters <- list()
-parameters[[ key ]] <- value
-parameters[[ key1 ]] <- value1
-parameters <- toJSON(parameters)
+parameters[[ "content" ]] <- syntax_dependencies_data
+parameters[[ "genre" ]] <- "social-media"
 
-if(is.na(opt$url)){
+if (is.na(opt$url)){
    result <- api(opt$key, "syntax/dependencies", parameters)
 } else {
    result <- api(opt$key, "syntax/dependencies", parameters, NULL, opt$url)
 }
-print(result)
+print(toJSON(result$header, pretty = TRUE))
+print(toJSON(result$content, pretty = TRUE))

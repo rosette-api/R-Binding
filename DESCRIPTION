@@ -12,13 +12,12 @@ License: file LICENSE
 Depends:
     R (>= 3.1.0),
     httr,
-    rjson
+    jsonlite
 Suggests:
 	knitr,
 	rmarkdown,
     testthat
 URL: https://developer.rosette.com
 BugReports: https://developer.rosette.com/support-ticket
-RoxygenNote: 5.0.1
 VignetteBuilder: 
     knitr

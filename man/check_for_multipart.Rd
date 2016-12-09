@@ -4,16 +4,16 @@
 \alias{check_for_multipart}
 \title{check if the request parameters contain multipart}
 \usage{
-check_for_multipart(user_key, parameters, endpoint, customHeaders, url)
+check_for_multipart(userKey, parameters, endpoint, custom_headers, url)
 }
 \arguments{
-\item{user_key}{- Rosette API authentication key}
+\item{userKey}{- Rosette API authentication key}
 
 \item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
-\item{customHeaders}{- custom headers for Rosette Api}
+\item{custom_headers}{- custom headers for Rosette Api}
 
 \item{url}{- url for Rosette Api}
 }

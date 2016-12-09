@@ -1,5 +1,5 @@
 source("../R/Api.R")
-library(rjson)
+library(jsonlite)
 library("optparse")
 
 option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
@@ -10,19 +10,14 @@ opt = parse_args(opt_parser)
 
 morphology_han_readings_data <- "北京大学生物系主任办公室内部会议"
 
-key <- "content"
-value <- morphology_han_readings_data
-key1 <- "morphology"
-value1 <- "han-readings"
-
 parameters <- list()
-parameters[[ key ]] <- value
-parameters[[ key1 ]] <- value1
-parameters <- toJSON(parameters)
+parameters[[ "content" ]] <- morphology_han_readings_data
+parameters[[ "morphology" ]] <- "han-readings"
 
-if(is.na(opt$url)){
+if (is.na(opt$url)){
    result <- api(opt$key, "morphology", parameters)
 } else {
    result <- api(opt$key, "morphology", parameters, NULL, opt$url)
 }
-print(result)
+print(toJSON(result$header, pretty = TRUE))
+print(toJSON(result$content, pretty = TRUE))

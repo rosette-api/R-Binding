@@ -1,5 +1,5 @@
 source("../R/Api.R")
-library(rjson)
+library(jsonlite)
 library("optparse")
 
 option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
@@ -10,16 +10,13 @@ opt = parse_args(opt_parser)
 
 relationships_text_data <- "Bill Gates, Microsoft's former CEO, is a philanthropist."
 
-key <- "content"
-value <- relationships_text_data
-
 parameters <- list()
-parameters[[ key ]] <- value
-parameters <- toJSON(parameters)
+parameters[[ "content" ]] <- relationships_text_data
 
-if(is.na(opt$url)){
+if (is.na(opt$url)){
    result <- api(opt$key, "relationships", parameters)
 } else {
    result <- api(opt$key, "relationships", parameters, NULL, opt$url)
 }
-print(result)
+print(toJSON(result$header, pretty = TRUE))
+print(toJSON(result$content, pretty = TRUE))

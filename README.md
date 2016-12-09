@@ -15,7 +15,7 @@ Ensure you're in the `current release` folder and run the command `R CMD INSTALL
 ## Example using the Rosette API language detection endpoint
 ```R
 library(rosetteApi)
-library(rjson)
+library(jsonlite)
 
 key <- "contentUri"
 value <- "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"

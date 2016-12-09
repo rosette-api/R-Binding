@@ -1,5 +1,5 @@
 source("../R/Api.R")
-library(rjson)
+library(jsonlite)
 library("optparse")
 
 option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
@@ -11,19 +11,14 @@ opt = parse_args(opt_parser)
 matched_name_data1 <- "Michael Jackson"
 matched_name_data2 <- "迈克尔·杰克逊"
 
-key <- "name1"
-value <- matched_name_data1
-key1 <- "name2"
-value1 <- matched_name_data2
-
 parameters <- list()
-parameters[[ key ]] <- value
-parameters[[ key1 ]] <- value1
-parameters <- toJSON(parameters)
+parameters[[ "name1" ]] <- matched_name_data1
+parameters[[ "name2" ]] <- matched_name_data2
 
-if(is.na(opt$url)){
+if (is.na(opt$url)){
    result <- api(opt$key, "name-similarity", parameters)
 } else {
    result <- api(opt$key, "name-similarity", parameters, NULL, opt$url)
 }
-print(result)
+print(toJSON(result$header, pretty = TRUE))
+print(toJSON(result$content, pretty = TRUE))

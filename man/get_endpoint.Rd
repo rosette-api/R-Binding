@@ -4,14 +4,14 @@
 \alias{get_endpoint}
 \title{GET request to specified Rosette API endpoint}
 \usage{
-get_endpoint(user_key, endpoint, customHeaders, url)
+get_endpoint(userKey, endpoint, custom_headers, url)
 }
 \arguments{
-\item{user_key}{- Rosette API authentication key}
+\item{userKey}{- Rosette API authentication key}
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
-\item{customHeaders}{- custom headers for Rosette Api}
+\item{custom_headers}{- custom headers for Rosette Api}
 
 \item{url}{- url for Rosette Api}
 }
