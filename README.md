@@ -5,11 +5,24 @@
 This is the Rosette API client binding for R.
 
 ## Getting Started
-Install the module with: `install.packages('rosetteAPI')`
+Install the module with: `install.packages('rosetteAPI')`, which will pull the release from CRAN
 
-OR
+OR (recommended), since CRAN is potentially behind the latest release, due to the hurdles one must traverse in order to publish, install from GitHub using ```install_github("rosette-api/r-binding")```
 
-Ensure you're in the `current release` folder and run the command `R CMD INSTALL rosetteApi_<version>.tar.gz`
+Command line example:
+
+```
+$ R -e 'install.packages("devtools")
+$ cat > installrosette.R << EOF
+> library(devtools)
+> install_github("rosette-api/r-binding")
+> q()
+> EOF
+$ R --no-save < installrosettte.R
+```
+
+
+
 
 
 ## Example using the Rosette API language detection endpoint
