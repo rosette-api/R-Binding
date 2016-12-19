@@ -2,9 +2,10 @@
 % Please edit documentation in R/Api.R
 \name{post_endpoint}
 \alias{post_endpoint}
-\title{POST request to specified Rosette API endpoint}
+\title{httr::POST request to specified Rosette API endpoint}
 \usage{
-post_endpoint(user_key, parameters, endpoint, customHeaders, url)
+post_endpoint(user_key, parameters, endpoint, url, custom_headers = NULL,
+  url_parameters = NULL)
 }
 \arguments{
 \item{user_key}{- Rosette API authentication key}
@@ -13,14 +14,16 @@ post_endpoint(user_key, parameters, endpoint, customHeaders, url)
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
-\item{customHeaders}{- custom headers for Rosette Api}
-
 \item{url}{- url for Rosette Api}
+
+\item{custom_headers}{- custom headers for Rosette Api}
+
+\item{url_parameters}{- query parameters}
 }
 \value{
-Returns the response from the Rosette API
+Returns the Rosette API response
 }
 \description{
-POST request to specified Rosette API endpoint
+httr::POST request to specified Rosette API endpoint
 }
 

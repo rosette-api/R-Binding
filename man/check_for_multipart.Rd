@@ -2,25 +2,17 @@
 % Please edit documentation in R/Api.R
 \name{check_for_multipart}
 \alias{check_for_multipart}
-\title{check if the request parameters contain multipart}
+\title{Helper to check for file submission}
 \usage{
-check_for_multipart(user_key, parameters, endpoint, customHeaders, url)
+check_for_multipart(parameters)
 }
 \arguments{
-\item{user_key}{- Rosette API authentication key}
-
-\item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
-
-\item{endpoint}{- Rosette API endpoint to be utilized}
-
-\item{customHeaders}{- custom headers for Rosette Api}
-
-\item{url}{- url for Rosette Api}
+\item{parameters}{- JSON parameters}
 }
 \value{
-Returns json of the specified Rosette API endpoint response from either a multipart or non-multipart request
+true if multipart
 }
 \description{
-check if the request parameters contain multipart
+Helper to check for file submission
 }
 

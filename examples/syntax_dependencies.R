@@ -8,18 +8,16 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-entities_text_data <- "Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS"
+syntax_dependencies_data <- "Yoshinori Ohsumi, a Japanese cell biologist, was awarded the Nobel Prize in Physiology or Medicine on Monday."
 
 parameters <- list()
-parameters[[ "content" ]] <- entities_text_data
+parameters[[ "content" ]] <- syntax_dependencies_data
 parameters[[ "genre" ]] <- "social-media"
-# advanced output
-url_parameters <- list(output = "rosette")
 
 if (is.na(opt$url)){
-   result <- api(opt$key, "entities", parameters, url_parameters = url_parameters)
+   result <- api(opt$key, "syntax/dependencies", parameters)
 } else {
-   result <- api(opt$key, "entities", parameters, NULL, opt$url)
+   result <- api(opt$key, "syntax/dependencies", parameters, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

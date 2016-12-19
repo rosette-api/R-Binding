@@ -1,5 +1,5 @@
 source("../R/Api.R")
-library(rjson)
+library(jsonlite)
 library("optparse")
 
 option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
@@ -8,18 +8,15 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-relationships_text_data <- "The Ghostbusters movie was filmed in Boston."
-
-key <- "content"
-value <- relationships_text_data
+relationships_text_data <- "Bill Gates, Microsoft's former CEO, is a philanthropist."
 
 parameters <- list()
-parameters[[ key ]] <- value
-parameters <- toJSON(parameters)
+parameters[[ "content" ]] <- relationships_text_data
 
-if(is.na(opt$url)){
+if (is.na(opt$url)){
    result <- api(opt$key, "relationships", parameters)
 } else {
    result <- api(opt$key, "relationships", parameters, NULL, opt$url)
 }
-print(result)
+print(jsonlite::toJSON(result$header, pretty = TRUE))
+print(jsonlite::toJSON(result$content, pretty = TRUE))

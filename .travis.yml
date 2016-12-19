@@ -9,12 +9,14 @@ repos:
   CRAN: https://cloud.r-project.org
 r_packages:
   - httr
-  - rjson
+  - jsonlite
   - testthat
   - optparse
+  - knitr
+  - roxygen2
 after_install:
   - cd rosetteApi
-script: Rscript tests
+script: Rscript -e 'devtools::test()'
 notifications:
   slack:
     rooms:
