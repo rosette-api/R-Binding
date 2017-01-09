@@ -12,7 +12,6 @@ syntax_dependencies_data <- "Yoshinori Ohsumi, a Japanese cell biologist, was aw
 
 parameters <- list()
 parameters[[ "content" ]] <- syntax_dependencies_data
-parameters[[ "genre" ]] <- "social-media"
 
 if (is.na(opt$url)){
    result <- api(opt$key, "syntax/dependencies", parameters)
