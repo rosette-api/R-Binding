@@ -77,6 +77,9 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
       "text-embedding"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "text-embedding", url, custom_headers, url_parameters)
       ),
+      "transliteration"= error_check(
+        post_endpoint(user_key, check_transliteration(parameters), "transliteration", url, custom_headers, url_parameters)
+      ),
       "syntax/dependencies"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "syntax/dependencies", url, custom_headers, url_parameters)
       ),
@@ -154,6 +157,20 @@ check_deduplication <- function(parameters, endpoint) {
   } else {
     return(parameters)
   }
+}
+
+#' check if the required request parameters for transliteration are correct
+#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @param endpoint - Rosette API endpoint to be utilized
+#' @return Returns list of verified parameters to be sent to Rosette API
+check_transliteration <- function(parameters, endpoint) {
+  params <- parameters
+  for (parameter_name in c("content", "targetLanguage", "targetScript", "sourceLanguage", "sourceScript")) {
+    if (!(parameter_name %in% names(params))) {
+      stop("Missing required parameter: ", parameter_name)
+    }
+  }
+  return(parameters)
 }
 
 #' create a multipart

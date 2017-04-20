@@ -30,3 +30,5 @@
 # rosetteApi 1.7.0
 - New name_deduplication endpoint
 - New name_deduplication example
+- New transliteration endpoint
+- New transliteration example

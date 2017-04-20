@@ -70,6 +70,17 @@ test_that("The parameters fulfill the name-deduplication requirements", {
   expect_equal(check_deduplication(parameters, "name-deduplication"), parameters)
 })
 
+test_that("The parameters fulfill the transliteration requirements", {
+  parameters <- list()
+  parameters[[ "content" ]] <- "Sample content"
+  parameters[[ "targetLanguage" ]] <- "eng"
+  parameters[[ "targetScript" ]] <- "Latn"
+  parameters[[ "sourceLanguage" ]] <- "eng"
+  parameters[[ "sourceScript" ]] <- "Latn"
+
+  expect_equal(check_transliteration(parameters, "transliteration"), parameters)
+})
+
 test_that("A morphology endpoint is present", {
   parameters <- list()
   parameters[[ "content" ]] <- "Rosette Api"
