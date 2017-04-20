@@ -56,6 +56,9 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
       "name-similarity"= error_check(
         post_endpoint(user_key, check_names(parameters, "name-similarity"), "name-similarity", url, custom_headers, url_parameters)
       ),
+      "name-deduplication"= error_check(
+        post_endpoint(user_key, check_deduplication(parameters, "name-deduplication"), "name-deduplication", url, custom_headers, url_parameters)
+      ),
       "relationships"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "relationships", url, custom_headers, url_parameters)
       ),
@@ -135,6 +138,21 @@ check_names <- function(parameters, endpoint) {
     } else {
       return(parameters)
     }
+  }
+}
+
+#' check if the required request parameters for name deduplication are correct
+#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @param endpoint - Rosette API endpoint to be utilized
+#' @return Returns list of verified parameters to be sent to Rosette API
+check_deduplication <- function(parameters, endpoint) {
+  params <- parameters
+  if (!("names" %in% names(params))) {
+    stop("Must supply a list of names to deduplicate")
+  } else if (!("threshold" %in% names(params))) {
+    parameters[[ "threshold" ]] <- 0.75
+  } else {
+    return(parameters)
   }
 }
 
@@ -257,16 +275,16 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
 
   if (is.null(url_parameters)) {
     response <- httr::POST(
-      paste(url, endpoint, sep=""), 
+      paste(url, endpoint, sep=""),
       encode = encoding,
-      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)), 
+      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)),
       body = request_body
     )
   } else {
     response <- httr::POST(
-      paste(url, endpoint, sep=""), 
+      paste(url, endpoint, sep=""),
       encode = encoding,
-      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)), 
+      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)),
       body = request_body,
       query = url_parameters
     )
@@ -284,12 +302,12 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
 get_endpoint <- function(user_key, endpoint, url, custom_headers=NULL, url_parameters=NULL) {
   if (is.null(url_parameters)) {
     response <- httr::GET(
-      paste(url, endpoint, sep=""), 
+      paste(url, endpoint, sep=""),
       httr::add_headers(get_headers(user_key, custom_headers))
     )
   } else {
     response <- httr::GET(
-      paste(url, endpoint, sep=""), 
+      paste(url, endpoint, sep=""),
       httr::add_headers(get_headers(user_key, custom_headers)),
       query = url_parameters
     )

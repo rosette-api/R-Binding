@@ -57,6 +57,19 @@ test_that("The parameters fulfill the name-similarity requirements", {
   expect_equal(check_names(parameters, "name-similarity"), parameters)
 })
 
+test_that("The parameters fulfill the name-deduplication requirements", {
+  name <- c("John Smith", "Johnathon Smith", "Fred Jones")
+  targetLanguage <- c("eng", "eng", "eng")
+  targetScript <- c("Latn", "Latn", "Latn")
+
+  names = data.frame(name, targetLanguage, targetScript)
+  parameters <- list()
+  parameters[[ "names" ]] <- names
+  parameters[[ "threshold" ]] <- 0.75
+
+  expect_equal(check_deduplication(parameters, "name-deduplication"), parameters)
+})
+
 test_that("A morphology endpoint is present", {
   parameters <- list()
   parameters[[ "content" ]] <- "Rosette Api"
