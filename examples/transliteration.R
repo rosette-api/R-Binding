@@ -12,10 +12,6 @@ transliteration_data <- "معمر محمد أبو منيار القذاف"
 
 parameters <- list()
 parameters[[ "content" ]] <- transliteration_data
-parameters[[ "targetLanguage" ]] <- "eng"
-parameters[[ "targetScript" ]] <- "Latn"
-parameters[[ "sourceLanguage" ]] <- "ara"
-parameters[[ "sourceScript" ]] <- "ara"
 
 if (is.na(opt$url)){
    result <- api(opt$key, "transliteration", parameters)

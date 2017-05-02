@@ -72,13 +72,9 @@ test_that("The parameters fulfill the name-deduplication requirements", {
 
 test_that("The parameters fulfill the transliteration requirements", {
   parameters <- list()
-  parameters[[ "content" ]] <- "Sample content"
-  parameters[[ "targetLanguage" ]] <- "eng"
-  parameters[[ "targetScript" ]] <- "Latn"
-  parameters[[ "sourceLanguage" ]] <- "eng"
-  parameters[[ "sourceScript" ]] <- "Latn"
+  parameters[[ "content" ]] <- "Mongo only pawn in game of life"
 
-  expect_equal(check_transliteration(parameters, "transliteration"), parameters)
+  expect_equal(check_content_parameters(parameters), parameters)
 })
 
 test_that("A morphology endpoint is present", {
