@@ -18,7 +18,7 @@ parameters[[ "targetScript" ]] <- "Latn"
 if (is.na(opt$url)){
    result <- api(opt$key, "name-translation", parameters)
 } else {
-   result <- api(opt$key, "name-translation", parameters, NULL, opt$url)
+   result <- api(opt$key, "name-translation", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

@@ -16,7 +16,7 @@ parameters[[ "content" ]] <- embeddings_data
 if (is.na(opt$url)){
    result <- api(opt$key, "text-embedding", parameters)
 } else {
-   result <- api(opt$key, "text-embedding", parameters, NULL, opt$url)
+   result <- api(opt$key, "text-embedding", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

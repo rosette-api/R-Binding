@@ -17,7 +17,7 @@ parameters[[ "morphology" ]] <- "han-readings"
 if (is.na(opt$url)){
    result <- api(opt$key, "morphology", parameters)
 } else {
-   result <- api(opt$key, "morphology", parameters, NULL, opt$url)
+   result <- api(opt$key, "morphology", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

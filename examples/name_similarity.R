@@ -18,7 +18,7 @@ parameters[[ "name2" ]] <- matched_name_data2
 if (is.na(opt$url)){
    result <- api(opt$key, "name-similarity", parameters)
 } else {
-   result <- api(opt$key, "name-similarity", parameters, NULL, opt$url)
+   result <- api(opt$key, "name-similarity", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

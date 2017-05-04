@@ -246,6 +246,19 @@ serialize_name_parameters <- function(parameters) {
   return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
 }
 
+#' serialize Rosette API parameters
+#' @param parameters - parameters list to be passed to name-deduplication
+#' @return Returns the serialized parameters for the Rosette API
+serialize_name_deduplication_parameters <- function(parameters) {
+  serialized_params <- list()
+  for (param in names(parameters)) {
+    if (param == "names" || param == "threshold") {
+    serialized_params[[param]] <- parameters[[param]]
+    }
+  }
+  return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
+}
+
 #' Helper to check for file submission
 #' @param parameters - JSON parameters
 #' @return true if multipart
@@ -271,6 +284,8 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
     content_type <- "application/json"
     if (endpoint == "name-translation" || endpoint == "name-similarity") {
       request_body <- serialize_name_parameters(parameters)
+    } else if (endpoint == "name-deduplication") {
+      request_body <- serialize_name_deduplication_parameters(parameters)
     } else {
       request_body <- serialize_parameters(parameters)
     }
