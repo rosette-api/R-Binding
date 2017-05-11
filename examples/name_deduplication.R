@@ -8,16 +8,19 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-morphology_han_readings_data <- "北京大学生物系主任办公室内部会议"
+text <- c("John Smith", "Johnathon Smith", "Fred Jones")
+targetLanguage <- c("eng", "eng", "eng")
+targetScript <- c("Latn", "Latn", "Latn")
 
+names = data.frame(text, targetLanguage, targetScript)
 parameters <- list()
-parameters[[ "content" ]] <- morphology_han_readings_data
-parameters[[ "morphology" ]] <- "han-readings"
+parameters[[ "names" ]] <- names
+parameters[[ "threshold" ]] <- 0.75
 
 if (is.na(opt$url)){
-   result <- api(opt$key, "morphology", parameters)
+   result <- api(opt$key, "name-deduplication", parameters)
 } else {
-   result <- api(opt$key, "morphology", parameters, NULL, NULL, opt$url)
+   result <- api(opt$key, "name-deduplication", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

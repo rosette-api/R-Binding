@@ -56,6 +56,9 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
       "name-similarity"= error_check(
         post_endpoint(user_key, check_names(parameters, "name-similarity"), "name-similarity", url, custom_headers, url_parameters)
       ),
+      "name-deduplication"= error_check(
+        post_endpoint(user_key, check_deduplication(parameters, "name-deduplication"), "name-deduplication", url, custom_headers, url_parameters)
+      ),
       "relationships"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "relationships", url, custom_headers, url_parameters)
       ),
@@ -73,6 +76,9 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
       ),
       "text-embedding"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "text-embedding", url, custom_headers, url_parameters)
+      ),
+      "transliteration"= error_check(
+        post_endpoint(user_key, check_content_parameters(parameters), "transliteration", url, custom_headers, url_parameters)
       ),
       "syntax/dependencies"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "syntax/dependencies", url, custom_headers, url_parameters)
@@ -135,6 +141,21 @@ check_names <- function(parameters, endpoint) {
     } else {
       return(parameters)
     }
+  }
+}
+
+#' check if the required request parameters for name deduplication are correct
+#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @param endpoint - Rosette API endpoint to be utilized
+#' @return Returns list of verified parameters to be sent to Rosette API
+check_deduplication <- function(parameters, endpoint) {
+  params <- parameters
+  if (!("names" %in% names(params))) {
+    stop("Must supply a list of names to deduplicate")
+  } else if (!("threshold" %in% names(params))) {
+    parameters[[ "threshold" ]] <- 0.75
+  } else {
+    return(parameters)
   }
 }
 
@@ -225,6 +246,19 @@ serialize_name_parameters <- function(parameters) {
   return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
 }
 
+#' serialize Rosette API parameters
+#' @param parameters - parameters list to be passed to name-deduplication
+#' @return Returns the serialized parameters for the Rosette API
+serialize_name_deduplication_parameters <- function(parameters) {
+  serialized_params <- list()
+  for (param in names(parameters)) {
+    if (param == "names" || param == "threshold") {
+    serialized_params[[param]] <- parameters[[param]]
+    }
+  }
+  return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
+}
+
 #' Helper to check for file submission
 #' @param parameters - JSON parameters
 #' @return true if multipart
@@ -250,6 +284,8 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
     content_type <- "application/json"
     if (endpoint == "name-translation" || endpoint == "name-similarity") {
       request_body <- serialize_name_parameters(parameters)
+    } else if (endpoint == "name-deduplication") {
+      request_body <- serialize_name_deduplication_parameters(parameters)
     } else {
       request_body <- serialize_parameters(parameters)
     }
@@ -257,16 +293,16 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
 
   if (is.null(url_parameters)) {
     response <- httr::POST(
-      paste(url, endpoint, sep=""), 
+      paste(url, endpoint, sep=""),
       encode = encoding,
-      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)), 
+      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)),
       body = request_body
     )
   } else {
     response <- httr::POST(
-      paste(url, endpoint, sep=""), 
+      paste(url, endpoint, sep=""),
       encode = encoding,
-      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)), 
+      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)),
       body = request_body,
       query = url_parameters
     )
@@ -284,12 +320,12 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
 get_endpoint <- function(user_key, endpoint, url, custom_headers=NULL, url_parameters=NULL) {
   if (is.null(url_parameters)) {
     response <- httr::GET(
-      paste(url, endpoint, sep=""), 
+      paste(url, endpoint, sep=""),
       httr::add_headers(get_headers(user_key, custom_headers))
     )
   } else {
     response <- httr::GET(
-      paste(url, endpoint, sep=""), 
+      paste(url, endpoint, sep=""),
       httr::add_headers(get_headers(user_key, custom_headers)),
       query = url_parameters
     )
