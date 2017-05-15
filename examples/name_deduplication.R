@@ -8,7 +8,10 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-text <- c("John Smith", "Johnathon Smith", "Fred Jones")
+name_dedupe_data <- "John Smith,Johnathon Smith,Fred Jones"
+
+
+text <- unlist(strsplit(name_dedupe_data, ","))
 targetLanguage <- c("eng", "eng", "eng")
 targetScript <- c("Latn", "Latn", "Latn")
 
