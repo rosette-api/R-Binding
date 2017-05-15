@@ -12,8 +12,8 @@ name_dedupe_data <- "John Smith,Johnathon Smith,Fred Jones"
 
 
 text <- unlist(strsplit(name_dedupe_data, ","))
-targetLanguage <- c("eng", "eng", "eng")
-targetScript <- c("Latn", "Latn", "Latn")
+targetLanguage <- rep("eng", length(text))
+targetScript <- rep("Latn", length(text))
 
 names = data.frame(text, targetLanguage, targetScript)
 parameters <- list()
