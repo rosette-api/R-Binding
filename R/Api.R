@@ -152,8 +152,6 @@ check_deduplication <- function(parameters, endpoint) {
   params <- parameters
   if (!("names" %in% names(params))) {
     stop("Must supply a list of names to deduplicate")
-  } else if (!("threshold" %in% names(params))) {
-    parameters[[ "threshold" ]] <- 0.75
   } else {
     return(parameters)
   }
