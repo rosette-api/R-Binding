@@ -1,7 +1,7 @@
 Package: rosetteApi
 Type: Package
 Title: Rosette API
-Version: 1.5.0
+Version: 1.7.0
 Date: 2016-12-12
 Author: Sam Hausmann [aut, cre],
     Chris Park [ctb],
