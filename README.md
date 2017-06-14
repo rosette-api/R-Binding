@@ -35,20 +35,21 @@ print(jsonlite::toJSON(result$content, pretty = TRUE)
 ```
 ## API Parameters
 | Parameter                     | Endpoint                                            | Required
-| -------------                 |-------------                                        |------------- 
-| content                    | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax_dependencies            | Either content or contentUri required |
-| contentUri                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax_dependencies       | Either content or contentUri required |
+| -------------                 |-------------                                        |-------------
+| content                    | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax/dependencies, transliteration (Yes)            | Either content or contentUri required |
+| contentUri                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax/dependencies       | Either content or contentUri required |
 | language                          | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, name similarity                    | No |
 | documentFile                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens                  | No |
 | name1                 | name similarity               | Yes |
 | name2               | name similarity| Yes |
 | name    | name translation     | Yes |
-| targetLanguage           | name translation           | Yes |
+| targetLanguage           | name translation, transliteration (No)          | Yes |
 | entityType                 | name translation         | No |
 | sourceLanguageOfOrigin        | name translation | No |
 | sourceLanguageOfUse                         | name translation       | No |
-| sourceScript                     | name translation               | No |
-| targetScript                     | name translation                    | No |
+| sourceScript                     | name translation, transliteration               | No |
+| sourceLanguage | transliteration | Yes |
+| targetScript                     | name translation, transliteration                   | No |
 | targetScheme                        | name translation          | No |
 | options              | relationships        | No |
 | accuracyMode              | relationships        | Yes |

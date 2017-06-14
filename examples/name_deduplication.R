@@ -8,15 +8,22 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-categories_url_data <- "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
+name_dedupe_data <- "John Smith,Johnathon Smith,Fred Jones"
 
+
+text <- unlist(strsplit(name_dedupe_data, ","))
+targetLanguage <- rep("eng", length(text))
+targetScript <- rep("Latn", length(text))
+
+names = data.frame(text, targetLanguage, targetScript)
 parameters <- list()
-parameters[[ "contentUri" ]] <- categories_url_data
+parameters[[ "names" ]] <- names
+parameters[[ "threshold" ]] <- 0.75
 
 if (is.na(opt$url)){
-   result <- api(opt$key, "categories", parameters)
+   result <- api(opt$key, "name-deduplication", parameters)
 } else {
-   result <- api(opt$key, "categories", parameters, NULL, NULL, opt$url)
+   result <- api(opt$key, "name-deduplication", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

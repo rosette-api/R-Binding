@@ -17,7 +17,7 @@ parameters[[ "documentFile" ]] <- "true"
 if (is.na(opt$url)){
    result <- api(opt$key, "sentiment", parameters)
 } else {
-   result <- api(opt$key, "sentiment", parameters, NULL, opt$url)
+   result <- api(opt$key, "sentiment", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

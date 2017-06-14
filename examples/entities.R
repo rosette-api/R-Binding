@@ -19,7 +19,7 @@ url_parameters <- list(output = "rosette")
 if (is.na(opt$url)){
    result <- api(opt$key, "entities", parameters, url_parameters = url_parameters)
 } else {
-   result <- api(opt$key, "entities", parameters, NULL, opt$url)
+   result <- api(opt$key, "entities", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

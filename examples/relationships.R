@@ -16,7 +16,7 @@ parameters[[ "content" ]] <- relationships_text_data
 if (is.na(opt$url)){
    result <- api(opt$key, "relationships", parameters)
 } else {
-   result <- api(opt$key, "relationships", parameters, NULL, opt$url)
+   result <- api(opt$key, "relationships", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

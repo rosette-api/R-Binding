@@ -16,7 +16,7 @@ parameters[[ "content" ]] <- sentences_data
 if (is.na(opt$url)){
    result <- api(opt$key, "sentences", parameters)
 } else {
-   result <- api(opt$key, "sentences", parameters, NULL, opt$url)
+   result <- api(opt$key, "sentences", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))
