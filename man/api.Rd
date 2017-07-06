@@ -33,4 +33,3 @@ parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters film."
 response = api(01234567890, "entities", parameters) will return response$content and response$header
 }
 }
-

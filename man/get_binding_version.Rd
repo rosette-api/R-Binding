@@ -12,4 +12,3 @@ current binding version
 \description{
 Provides the binding Version
 }
-

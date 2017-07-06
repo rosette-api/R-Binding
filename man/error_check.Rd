@@ -15,4 +15,3 @@ Returns an error if one exists or the Rosette API response
 \description{
 check if Rosette API response includes and error message
 }
-

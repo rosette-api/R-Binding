@@ -1,8 +1,8 @@
 Package: rosetteApi
 Type: Package
 Title: Rosette API
-Version: 1.5.0
-Date: 2016-12-12
+Version: 1.7.0
+Date: 2017-06-14
 Author: Sam Hausmann [aut, cre],
     Chris Park [ctb],
     Hannah Gaudet [ctb]
@@ -22,4 +22,4 @@ Suggests:
 URL: https://developer.rosette.com
 BugReports: https://developer.rosette.com/support-ticket
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

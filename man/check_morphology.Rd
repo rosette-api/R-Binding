@@ -17,4 +17,3 @@ Returns the specified morphology function
 \description{
 determine which morphology endpoint to use
 }
-
