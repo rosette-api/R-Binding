@@ -93,7 +93,7 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
 #' Provides the binding Version
 #' @return current binding version
 get_binding_version <- function() {
-  bindingVersion <- "1.5.0"
+  bindingVersion <- "1.7.0"
   return(bindingVersion)
 }
 
@@ -152,8 +152,6 @@ check_deduplication <- function(parameters, endpoint) {
   params <- parameters
   if (!("names" %in% names(params))) {
     stop("Must supply a list of names to deduplicate")
-  } else if (!("threshold" %in% names(params))) {
-    parameters[[ "threshold" ]] <- 0.75
   } else {
     return(parameters)
   }
