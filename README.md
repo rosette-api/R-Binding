@@ -69,5 +69,9 @@ Additional environment settings:
 `-e ALT_URL=<alternative URL>`
 `-e FILENAME=<single filename>`
 
+## Documentation
+
+View the latest [documentation](https://cran.r-project.org/web/packages/rosetteApi/rosetteApi.pdf)
+
 ## Additional Information
 See [Rosette API site](https://developer.rosette.com/)
