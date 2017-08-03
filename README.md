@@ -21,8 +21,15 @@ $ cat > installrosette.R << EOF
 $ R --no-save < installrosettte.R
 ```
 
+If the version you are using is not [the latest from CRAN](https://cran.r-project.org/web/packages/rosetteApi/index.html)
+or [github](https://github.com/rosette-api/R-Binding/releases),
+please check for its [**compatibilty with api.rosette.com**](https://developer.rosette.com/features-and-functions?r).
+If you have an on-premise version of Rosette API server, please contact support for
+binding compatibility with your installation.
 
+To check your installed version:
 
+`> packageVersion("rosetteAPI")`
 
 
 ## Example using the Rosette API language detection endpoint
