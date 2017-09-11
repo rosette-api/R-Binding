@@ -65,6 +65,9 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
       "tokens"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "tokens", url, custom_headers, url_parameters)
       ),
+      "topics"= error_check(
+        post_endpoint(user_key, check_content_parameters(parameters), "topics", url, custom_headers, url_parameters)
+      ),
       "morphology"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), check_morphology(parameters, "morphology"), url, custom_headers, url_parameters)
       ),
