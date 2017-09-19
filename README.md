@@ -47,10 +47,10 @@ print(jsonlite::toJSON(result$content, pretty = TRUE)
 ## API Parameters
 | Parameter                     | Endpoint                                            | Required
 | -------------                 |-------------                                        |-------------
-| content                    | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax/dependencies, transliteration (Yes)            | Either content or contentUri required |
-| contentUri                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax/dependencies       | Either content or contentUri required |
-| language                          | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, name similarity                    | No |
-| documentFile                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens                  | No |
+| content                    | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics, syntax/dependencies, transliteration (Yes)            | Either content or contentUri required |
+| contentUri                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics, syntax/dependencies       | Either content or contentUri required |
+| language                          | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics, name similarity                    | No |
+| documentFile                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics | No |
 | name1                 | name similarity               | Yes |
 | name2               | name similarity| Yes |
 | name    | name translation     | Yes |
@@ -77,8 +77,10 @@ Additional environment settings:
 `-e FILENAME=<single filename>`
 
 ## Documentation
-
 View the latest [documentation](https://cran.r-project.org/web/packages/rosetteApi/rosetteApi.pdf)
+
+## Release Notes
+See the [wiki](https://github.com/rosette-api/R-Binding/wiki/Release-Notes)
 
 ## Additional Information
 See [Rosette API site](https://developer.rosette.com/)
