@@ -11,7 +11,7 @@ opt = parse_args(opt_parser)
 if (is.na(opt$url)){
    result <- api(opt$key, "ping")
 } else {
-   result <- api(opt$key, "ping", NULL, NULL, opt$url)
+   result <- api(opt$key, "ping", FALSE, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

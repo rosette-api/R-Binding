@@ -17,7 +17,7 @@ custom_headers <- c("X-RosetteAPI-App" = "r-application-test")
 if (is.na(opt$url)){
   result <- api(opt$key, "language", parameters = parameters, custom_headers = custom_headers)
 } else {
-  result <- api(opt$key, "language", parameters = parameters, custom_headers = headers, url = opt$url)
+  result <- api(opt$key, "language", parameters = parameters, custom_headers = custom_headers, NULL, url = opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

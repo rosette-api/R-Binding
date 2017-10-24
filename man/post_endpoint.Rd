@@ -26,4 +26,3 @@ Returns the Rosette API response
 \description{
 httr::POST request to specified Rosette API endpoint
 }
-

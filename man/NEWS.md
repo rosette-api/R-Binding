@@ -26,3 +26,12 @@
 - Changed from rjson to jsonlite
 - Cleaned up examples
 - parameter argument is now a list and does not need to be converted to JSON
+
+# rosetteApi 1.7.0
+- New name_deduplication endpoint
+- New name_deduplication example
+- New transliteration endpoint
+- New transliteration example
+
+# rosetteApi 1.8.0
+- New topics endpoint

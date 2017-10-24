@@ -15,4 +15,3 @@ true if multipart
 \description{
 Helper to check for file submission
 }
-

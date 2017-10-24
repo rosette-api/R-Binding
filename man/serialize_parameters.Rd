@@ -15,4 +15,3 @@ Returns the serialized parameters for the Rosette API
 \description{
 serialize Rosette API parameters
 }
-

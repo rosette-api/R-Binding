@@ -15,4 +15,3 @@ Returns list of verified parameters to be sent to Rosette API
 \description{
 preemptive check for content/contentUri request parameter errors
 }
-

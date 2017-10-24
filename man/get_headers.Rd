@@ -20,4 +20,3 @@ Returns the combined h
 \description{
 Helper to combine custom headers with the default ones
 }
-
