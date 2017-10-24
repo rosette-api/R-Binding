@@ -96,7 +96,7 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
 #' Provides the binding Version
 #' @return current binding version
 get_binding_version <- function() {
-  bindingVersion <- "1.7.0"
+  bindingVersion <- "1.8.0"
   return(bindingVersion)
 }
 
