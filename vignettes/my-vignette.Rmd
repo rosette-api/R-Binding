@@ -30,10 +30,10 @@ Visit our [Features and Functions](https://developer.rosette.com/features-and-fu
 ## API Parameters
 | Parameter                     | Endpoint                                            | Required
 | -------------                 |-------------                                        |-------------
-| content                    | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax/dependencies, transliteration (Yes)            | Either content or contentUri required |
-| contentUri                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, syntax/dependencies       | Either content or contentUri required |
-| language                          | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, name similarity                    | No |
-| documentFile                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens                  | No |
+| content                    | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics, syntax/dependencies, transliteration (Yes)            | Either content or contentUri required |
+| contentUri                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics, syntax/dependencies       | Either content or contentUri required |
+| language                          | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics, name similarity                    | No |
+| documentFile                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics | No |
 | name1                 | name similarity               | Yes |
 | name2               | name similarity| Yes |
 | name    | name translation     | Yes |

@@ -32,3 +32,6 @@
 - New name_deduplication example
 - New transliteration endpoint
 - New transliteration example
+
+# rosetteApi 1.8.0
+- New topics endpoint
