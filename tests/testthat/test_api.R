@@ -90,3 +90,9 @@ test_that("The parameters object is valid", {
   expect_equal(check_content_parameters(parameters), parameters)
 })
 
+test_that("The User-Agent is valid", {
+  version <- paste(R.Version()$platform, R.Version()$major, R.Version()$minor, sep=".")
+  ua <- paste("R", get_binding_version(), version, sep="/")
+  expect_equal(get_user_agent(), ua)
+})
+
