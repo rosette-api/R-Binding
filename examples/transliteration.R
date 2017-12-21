@@ -8,7 +8,7 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-transliteration_data <- "معمر محمد أبو منيار القذاف"
+transliteration_data <- "ana r2ye7 el gam3a el sa3a 3 el 3asr"
 
 parameters <- list()
 parameters[[ "content" ]] <- transliteration_data
