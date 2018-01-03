@@ -214,11 +214,16 @@ error_check <- function(response) {
 #' @param custom_headers - custom headers for the Rosette API
 #' @return Returns the combined h
 get_headers <- function(user_key, content_type="application/json", custom_headers=NULL) {
-  headers <- c("X-RosetteAPI-Key" = user_key, "Content-Type" = content_type, "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = get_binding_version(), "user-agent" = "ruseragent")
+  headers <- c("X-RosetteAPI-Key" = user_key, "Content-Type" = content_type, "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = get_binding_version(), "user-agent" = get_user_agent())
   if (!is.null(custom_headers)) {
     return(c(headers, custom_headers))
   }
   return(headers)
+}
+
+get_user_agent <- function() {
+  version <- paste(R.Version()$platform, R.Version()$major, R.Version()$minor, sep=".")
+  return(paste("R", get_binding_version(), version, sep="/"))
 }
 
 #' serialize Rosette API parameters
