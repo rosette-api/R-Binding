@@ -1,7 +1,8 @@
 ^README\.Rmd$       # An Rmarkdown file used to generate README.md
 ^cran-comments\.md$ # Comments for CRAN submission
-^NEWS.md$          # A news file written in Markdown
+^NEWS.md$           # A news file written in Markdown
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
 examples$
+^Jenkinsfile

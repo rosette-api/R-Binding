@@ -35,3 +35,7 @@
 
 # rosetteApi 1.8.0
 - New topics endpoint
+
+# rosetteApi 1.9.0
+- New multilingual language example
+- User Agent now includes runtime version
