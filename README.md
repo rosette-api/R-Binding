@@ -21,7 +21,7 @@ $ cat > installrosette.R << EOF
 $ R --no-save < installrosettte.R
 ```
 
-If the version you are using is not [the latest from CRAN](https://cran.r-project.org/web/packages/rosetteApi/index.html)
+If the version you are using is not [the latest from CRAN](https://cran.r-project.org/package=rosetteApi)
 or [github](https://github.com/rosette-api/R-Binding/releases),
 please check for its [**compatibilty with api.rosette.com**](https://developer.rosette.com/features-and-functions?r).
 If you have an on-premise version of Rosette API server, please contact support for
@@ -77,7 +77,7 @@ Additional environment settings:
 `-e FILENAME=<single filename>`
 
 ## Documentation
-View the latest [documentation](https://cran.r-project.org/web/packages/rosetteApi/rosetteApi.pdf)
+View the latest [documentation](https://cran.r-project.org/package=rosetteApi/rosetteApi.pdf)
 
 ## Release Notes
 See the [wiki](https://github.com/rosette-api/R-Binding/wiki/Release-Notes)
