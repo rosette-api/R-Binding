@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rosette-api/R.svg?branch=master)](https://travis-ci.org/rosette-api/nodejs)
+[![Build Status](https://travis-ci.org/rosette-api/R-Binding.svg?branch=develop)](https://travis-ci.org/rosette-api/R-Binding)
 
 # rosette-api
 
