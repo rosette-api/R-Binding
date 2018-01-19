@@ -1,8 +1,8 @@
 Package: rosetteApi
 Type: Package
-Title: Rosette API
+Title: 'Rosette' API
 Version: 1.9.0
-Date: 2018-01-18
+Date: 2018-01-19
 Authors@R: c(
     person("Chris", "Park", email = "cpark@basistech.com", role = c("aut", "cre")),
     person("Sam", "Hausmann", role = "aut"),
@@ -10,9 +10,9 @@ Authors@R: c(
     person("Seth", "Gransky", email = "seth@basistech.com", role = "ctb"),
     person("Basis", "Technology Corp.", role ="cph"))
 Maintainer: Chris Park <cpark@basistech.com>
-Description: Rosette is an API for multilingual text analysis and information
+Description: 'Rosette' is an API for multilingual text analysis and information
     extraction. More information can be found at <https://developer.rosette.com>.
-License: file LICENSE
+License: Apache License 2.0 | file LICENSE
 Depends:
     R (>= 3.1.0)
 Imports:
