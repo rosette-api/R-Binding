@@ -1,7 +1,7 @@
 Package: rosetteApi
 Type: Package
 Title: 'Rosette' API
-Version: 1.9.1-devel
+Version: 1.9.1
 Date: 2018-01-19
 Authors@R: c(
     person("Chris", "Park", email = "cpark@basistech.com", role = c("aut", "cre")),
