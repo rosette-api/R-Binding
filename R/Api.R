@@ -80,11 +80,17 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
       "text-embedding"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "text-embedding", url, custom_headers, url_parameters)
       ),
+      "semantics/vector"= error_check(
+        post_endpoint(user_key, check_content_parameters(parameters), "semantics/vector", url, custom_headers, url_parameters)
+      ),
       "transliteration"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "transliteration", url, custom_headers, url_parameters)
       ),
       "syntax/dependencies"= error_check(
         post_endpoint(user_key, check_content_parameters(parameters), "syntax/dependencies", url, custom_headers, url_parameters)
+      ),
+      "semantics/similar"= error_check(
+        post_endpoint(user_key, check_content_parameters(parameters), "semantics/similar", url, custom_headers, url_parameters)
       ),
       stop("Specify a valid Rosette API endpoint")
     )
