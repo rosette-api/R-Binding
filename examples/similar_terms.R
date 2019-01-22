@@ -9,12 +9,12 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-data <- "spy"
+similar_terms_data <- "spy"
 opts <- hash()
 opts[["resultLanguages"]] <- list("deu", "spa", "jpn")
 
 parameters <- list()
-parameters[[ "content" ]] <- data
+parameters[[ "content" ]] <- similar_terms_data
 parameters[[ "options" ]] <- opts
 
 if (is.na(opt$url)){

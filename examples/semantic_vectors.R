@@ -8,10 +8,10 @@ option_list = list( make_option(c("-k", "--key"), action="store", default=NA, ty
 opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
-embeddings_data <- "Cambridge, Massachusetts"
+semantic_vectors_data <- "Cambridge, Massachusetts"
 
 parameters <- list()
-parameters[[ "content" ]] <- embeddings_data
+parameters[[ "content" ]] <- semantic_vectors_data
 
 if (is.na(opt$url)){
    result <- api(opt$key, "semantics/vector", parameters)
