@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rosette-api/R-Binding.svg?branch=develop)](https://travis-ci.org/rosette-api/R-Binding) ![](https://img.shields.io/cran/v/rosetteApi.svg?colorB=green&style=flat)
+[![Build Status](https://travis-ci.org/rosette-api/R-Binding.svg?branch=develop)](https://travis-ci.org/rosette-api/R-Binding) ![](https://img.shields.io/cran/v/rosetteApi.svg?colorB=bright%20green&style=flat)
 
 # rosette-api
 
