@@ -4,7 +4,8 @@
 library(httr)
 library(jsonlite)
 
-#' api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized
+#' api wrapper function that checks for a user_key and determines the
+#' Rosette API endpoint to be utilized
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param parameters - parameters list to be passed to specified Rosette API endpoint
@@ -16,10 +17,11 @@ library(jsonlite)
 #' \dontrun{
 #' parameters <- list()
 #' parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters film."
-#' response = api(01234567890, "entities", parameters) will return response$content and response$header
+#' response <- api(01234567890, "entities", parameters) will return response$content and response$header
 #' }
 #' @export
-api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_parameters=NULL, url="https://api.rosette.com/rest/v1/") {
+api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL,
+                url_parameters=NULL, url="https://api.rosette.com/rest/v1/") {
   if (is.null(user_key)) {
     stop("API key param empty")
   } else {
@@ -42,68 +44,90 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL, url_p
         get_endpoint(user_key, "ping", url, custom_headers, url_parameters)
       ),
       "language" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "language", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "language", url, custom_headers, url_parameters)
       ),
       "categories" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "categories", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "categories", url, custom_headers, url_parameters)
       ),
       "entities" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "entities", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "entities", url, custom_headers, url_parameters)
       ),
       "name-translation" = error_check(
-        post_endpoint(user_key, check_names(parameters, "name-translation"), "name-translation", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_names(parameters, "name-translation"),
+                      "name-translation", url, custom_headers, url_parameters)
       ),
       "name-similarity" = error_check(
-        post_endpoint(user_key, check_names(parameters, "name-similarity"), "name-similarity", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_names(parameters, "name-similarity"),
+                      "name-similarity", url, custom_headers, url_parameters)
       ),
       "name-deduplication" = error_check(
-        post_endpoint(user_key, check_deduplication(parameters, "name-deduplication"), "name-deduplication", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_deduplication(parameters,
+                                                    "name-deduplication"),
+                      "name-deduplication", url, custom_headers,
+                      url_parameters)
       ),
       "relationships" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "relationships", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "relationships", url, custom_headers, url_parameters)
       ),
       "tokens" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "tokens", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "tokens", url, custom_headers, url_parameters)
       ),
       "topics" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "topics", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "topics", url, custom_headers, url_parameters)
       ),
       "morphology" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), check_morphology(parameters, "morphology"), url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      check_morphology(parameters, "morphology"), url,
+                      custom_headers, url_parameters)
       ),
       "sentiment" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "sentiment", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "sentiment", url, custom_headers, url_parameters)
       ),
       "sentences" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "sentences", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "sentences", url, custom_headers, url_parameters)
       ),
       "text-embedding" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "text-embedding", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "text-embedding", url, custom_headers, url_parameters)
       ),
       "semantics/vector" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "semantics/vector", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "semantics/vector", url, custom_headers, url_parameters)
       ),
       "transliteration" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "transliteration", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "transliteration", url, custom_headers, url_parameters)
       ),
       "syntax/dependencies" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "syntax/dependencies", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "syntax/dependencies", url, custom_headers,
+                      url_parameters)
       ),
       "semantics/similar" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters), "semantics/similar", url, custom_headers, url_parameters)
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "semantics/similar", url, custom_headers, url_parameters)
       ),
       stop("Specify a valid Rosette API endpoint")
     )
 
-    return(list("content" = httr::content(response), "header" = httr::headers(response)))
+    return(list("content" = httr::content(response),
+                "header" = httr::headers(response)))
   }
 }
 
 #' Provides the binding Version
 #' @return current binding version
 get_binding_version <- function() {
-  bindingVersion <- "1.9.1-devel"
-  return(bindingVersion)
+  binding.version <- "1.12.1"
+  return(binding.version)
 }
 
 #' preemptive check for content/contentUri request parameter errors
@@ -219,8 +243,12 @@ error_check <- function(response) {
 #' @param content_type - Header Content-Type
 #' @param custom_headers - custom headers for the Rosette API
 #' @return Returns the combined h
-get_headers <- function(user_key, content_type="application/json", custom_headers=NULL) {
-  headers <- c("X-RosetteAPI-Key" = user_key, "Content-Type" = content_type, "X-RosetteAPI-Binding" = "R", "X-RosetteAPI-Binding-Version" = get_binding_version(), "user-agent" = get_user_agent())
+get_headers <- function(user_key, content_type="application/json",
+                        custom_headers=NULL) {
+  headers <- c("X-RosetteAPI-Key" = user_key, "Content-Type" = content_type,
+               "X-RosetteAPI-Binding" = "R",
+               "X-RosetteAPI-Binding-Version" = get_binding_version(),
+               "user-agent" = get_user_agent())
   if (!is.null(custom_headers)) {
     return(c(headers, custom_headers))
   }
@@ -228,7 +256,8 @@ get_headers <- function(user_key, content_type="application/json", custom_header
 }
 
 get_user_agent <- function() {
-  version <- paste(R.Version()$platform, R.Version()$major, R.Version()$minor, sep = ".")
+  version <- paste(R.Version()$platform, R.Version()$major, R.Version()$minor,
+                   sep = ".")
   return(paste("R", get_binding_version(), version, sep = "/"))
 }
 
@@ -286,7 +315,8 @@ check_for_multipart <- function(parameters) {
 #' @param custom_headers - custom headers for Rosette Api
 #' @param url_parameters - query parameters
 #' @return Returns the Rosette API response
-post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NULL, url_parameters=NULL) {
+post_endpoint <- function(user_key, parameters, endpoint, url,
+                          custom_headers=NULL, url_parameters=NULL) {
   if (check_for_multipart(parameters)) {
     request_body <- create_multipart(parameters)
     encoding <- "multipart"
@@ -307,14 +337,16 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
     response <- httr::POST(
       paste(url, endpoint, sep = ""),
       encode = encoding,
-      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)),
+      httr::add_headers(get_headers(user_key, content_type = content_type,
+                                    custom_headers = custom_headers)),
       body = request_body
     )
   } else {
     response <- httr::POST(
       paste(url, endpoint, sep = ""),
       encode = encoding,
-      httr::add_headers(get_headers(user_key, content_type = content_type, custom_headers = custom_headers)),
+      httr::add_headers(get_headers(user_key, content_type = content_type,
+                                    custom_headers = custom_headers)),
       body = request_body,
       query = url_parameters
     )
@@ -329,7 +361,8 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
 #' @param custom_headers - custom headers for Rosette Api
 #' @param url_parameters - url query parameters
 #' @return Returns the Rosette API response
-get_endpoint <- function(user_key, endpoint, url, custom_headers=NULL, url_parameters=NULL) {
+get_endpoint <- function(user_key, endpoint, url, custom_headers=NULL,
+                         url_parameters=NULL) {
   if (is.null(url_parameters)) {
     response <- httr::GET(
       paste(url, endpoint, sep = ""),
