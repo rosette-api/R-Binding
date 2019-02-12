@@ -17,7 +17,8 @@ library(jsonlite)
 #' \dontrun{
 #' parameters <- list()
 #' parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters film."
-#' response <- api(01234567890, "entities", parameters) will return response$content and response$header
+#' response <- api(01234567890, "entities", parameters)
+#' # The call above returns response$content and response$header
 #' }
 #' @export
 api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL,
