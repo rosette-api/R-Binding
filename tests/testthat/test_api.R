@@ -62,7 +62,7 @@ test_that("The parameters fulfill the name-deduplication requirements", {
   targetLanguage <- c("eng", "eng", "eng")
   targetScript <- c("Latn", "Latn", "Latn")
 
-  names = data.frame(name, targetLanguage, targetScript)
+  names <- data.frame(name, targetLanguage, targetScript)
   parameters <- list()
   parameters[[ "names" ]] <- names
   parameters[[ "threshold" ]] <- 0.75
@@ -91,8 +91,7 @@ test_that("The parameters object is valid", {
 })
 
 test_that("The User-Agent is valid", {
-  version <- paste(R.Version()$platform, R.Version()$major, R.Version()$minor, sep=".")
-  ua <- paste("R", get_binding_version(), version, sep="/")
+  version <- paste(R.Version()$platform, R.Version()$major, R.Version()$minor, sep = ".")
+  ua <- paste("R", get_binding_version(), version, sep = "/")
   expect_equal(get_user_agent(), ua)
 })
-

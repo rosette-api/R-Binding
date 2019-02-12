@@ -1,15 +1,15 @@
 Package: rosetteApi
 Type: Package
 Title: 'Rosette' API
-Version: 1.9.1
-Date: 2018-01-19
+Version: 1.12.1
+Date: 2019-02-12
 Authors@R: c(
-    person("Chris", "Park", email = "cpark@basistech.com", role = c("aut", "cre")),
+    person("Chris", "Park", role = "aut"),
     person("Sam", "Hausmann", role = "aut"),
     person("Hannah", "Gaudet", role = "ctb"),
-    person("Seth", "Gransky", email = "seth@basistech.com", role = "ctb"),
-    person("Basis", "Technology Corp.", role ="cph"))
-Maintainer: Chris Park <cpark@basistech.com>
+    person("Ian", "Redpath", email = "iredpath@basistech.com", role = "ctb"),
+    person("Seth", "Gransky", email = "seth@basistech.com", role = c("ctb", "cre")),
+    person("Basis", "Technology Corp.", email = "support@rosette.com", role ="cph"))
 Description: 'Rosette' is an API for multilingual text analysis and information
     extraction. More information can be found at <https://developer.rosette.com>.
 License: Apache License 2.0 | file LICENSE

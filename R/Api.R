@@ -290,7 +290,7 @@ post_endpoint <- function(user_key, parameters, endpoint, url, custom_headers=NU
   if (check_for_multipart(parameters)) {
     request_body <- create_multipart(parameters)
     encoding <- "multipart"
-    content_type = "multipart/mixed"
+    content_type <- "multipart/mixed"
   } else {
     encoding <- "json"
     content_type <- "application/json"
