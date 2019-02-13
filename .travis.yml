@@ -16,7 +16,10 @@ r_packages:
   - roxygen2
 after_install:
   - cd rosetteApi
-script: Rscript -e 'devtools::test()'
+warnings_are_errors: true
+script:
+  - Rscript -e 'devtools::test()'
+  - Rscript -e 'devtools::check()'
 notifications:
   slack:
     rooms:
