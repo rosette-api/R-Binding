@@ -1,4 +1,4 @@
-# rosetteApi 1.12.1 (2019-02-12)
+# rosetteApi 1.12.1 (2019-03-14)
 - New Similar Terms endpoint `/semantics/similar`
 - New Similar Terms example
 - `/text-embedding` endpoint changed to `/semantics/vector`

@@ -2,7 +2,7 @@ Package: rosetteApi
 Type: Package
 Title: 'Rosette' API
 Version: 1.12.1
-Date: 2019-02-12
+Date: 2019-03-14
 Authors@R: c(
     person("Chris", "Park", role = "aut"),
     person("Sam", "Hausmann", role = "aut"),
