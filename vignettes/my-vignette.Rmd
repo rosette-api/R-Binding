@@ -25,7 +25,7 @@ Rosette uses API keys to allow access to the API. You can find your Rosette API 
 
 ## Features and Functions
 
-Visit our [Features and Functions](https://developer.rosette.com/features-and-functions#introduction) page for a more detailed look at the functionality of the Rosette API endpoints.
+Visit our [Features and Functions](https://developer.rosette.com/features-and-functions) page for a more detailed look at the functionality of the Rosette API endpoints.
 
 ## API Parameters
 | Parameter                     | Endpoint                                            | Required
