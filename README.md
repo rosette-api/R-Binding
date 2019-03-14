@@ -5,9 +5,15 @@
 This is the Rosette API client binding for R.
 
 ## Getting Started
-Install the module with: `install.packages('rosetteAPI')`, which will pull the release from CRAN
+Install the module thru CRAN:
+```
+install.packages('rosetteAPI')
+```
 
-OR (recommended), since CRAN is potentially behind the latest release, due to the hurdles one must traverse in order to publish, install from GitHub using ```install_github("rosette-api/r-binding")```
+There may be times when the latest version is not yet available on CRAN.  In that case you can install from GitHub:
+```
+install_github("rosette-api/r-binding")
+```
 
 Command line example:
 
@@ -22,8 +28,8 @@ $ R --no-save < installrosettte.R
 ```
 
 If the version you are using is not [the latest from CRAN](https://cran.r-project.org/package=rosetteApi)
-or [github](https://github.com/rosette-api/R-Binding/releases),
-please check for its [**compatibilty with api.rosette.com**](https://developer.rosette.com/features-and-functions?r).
+or [GitHub](https://github.com/rosette-api/R-Binding/releases),
+you can verify the [**compatibilty with api.rosette.com**](https://developer.rosette.com/features-and-functions?r).
 If you have an on-premise version of Rosette API server, please contact support for
 binding compatibility with your installation.
 
