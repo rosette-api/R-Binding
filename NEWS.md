@@ -1,3 +1,9 @@
+# rosetteApi 1.12.1 (2019-03-14)
+- New Similar Terms endpoint `/semantics/similar`
+- New Similar Terms example
+- `/text-embedding` endpoint changed to `/semantics/vector`
+- `/text-embedding` example changed to `/semantics/vector` example
+
 # rosetteApi 1.9.0 (2018-01-19)
 - New multilingual language example
 - User Agent now includes runtime version

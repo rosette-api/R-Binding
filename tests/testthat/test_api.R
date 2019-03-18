@@ -4,7 +4,9 @@
 test_that("httr::GET function mocks correctly", {
   with_mock(
     `httr::GET` = function(x, y) "mocked response",
-    expect_equal(get_endpoint("fakekey", "endpoint", "https://api.rosette.com/rest/v1/"), "mocked response")
+    expect_equal(get_endpoint("fakekey", "endpoint",
+                              "https://api.rosette.com/rest/v1/"),
+                 "mocked response")
   )
 })
 
@@ -13,7 +15,9 @@ test_that("httr::POST functions mock correctly", {
   parameters <- jsonlite::toJSON(list())
   with_mock(
     `httr::POST` = function(x, y, ...) "mocked response",
-    expect_equal(post_endpoint("fakekey", parameters, "endpoint", "https://api.rosette.com/rest/v1/"), "mocked response")
+    expect_equal(post_endpoint("fakekey", parameters, "endpoint",
+                               "https://api.rosette.com/rest/v1/"),
+                 "mocked response")
   )
 })
 
@@ -59,15 +63,16 @@ test_that("The parameters fulfill the name-similarity requirements", {
 
 test_that("The parameters fulfill the name-deduplication requirements", {
   name <- c("John Smith", "Johnathon Smith", "Fred Jones")
-  targetLanguage <- c("eng", "eng", "eng")
-  targetScript <- c("Latn", "Latn", "Latn")
+  target.language <- c("eng", "eng", "eng")
+  target.script <- c("Latn", "Latn", "Latn")
 
-  names = data.frame(name, targetLanguage, targetScript)
+  names <- data.frame(name, target.language, target.script)
   parameters <- list()
   parameters[[ "names" ]] <- names
   parameters[[ "threshold" ]] <- 0.75
 
-  expect_equal(check_deduplication(parameters, "name-deduplication"), parameters)
+  expect_equal(check_deduplication(parameters, "name-deduplication"),
+               parameters)
 })
 
 test_that("The parameters fulfill the transliteration requirements", {
@@ -91,8 +96,8 @@ test_that("The parameters object is valid", {
 })
 
 test_that("The User-Agent is valid", {
-  version <- paste(R.Version()$platform, R.Version()$major, R.Version()$minor, sep=".")
-  ua <- paste("R", get_binding_version(), version, sep="/")
+  version <- paste(R.Version()$platform, R.Version()$major,
+                   R.Version()$minor, sep = ".")
+  ua <- paste("R", get_binding_version(), version, sep = "/")
   expect_equal(get_user_agent(), ua)
 })
-

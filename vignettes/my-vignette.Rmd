@@ -25,7 +25,7 @@ Rosette uses API keys to allow access to the API. You can find your Rosette API 
 
 ## Features and Functions
 
-Visit our [Features and Functions](https://developer.rosette.com/features-and-functions#introduction) page for a more detailed look at the functionality of the Rosette API endpoints.
+Visit our [Features and Functions](https://developer.rosette.com/features-and-functions) page for a more detailed look at the functionality of the Rosette API endpoints.
 
 ## API Parameters
 | Parameter                     | Endpoint                                            | Required
@@ -56,7 +56,7 @@ library(rosetteApi)
 library(jsonlite)
 
 parameters <- list()
-parameters[[ "contentUri" ]] <- "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
+parameters[[ "contentUri" ]] <- "https://onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
 
 result <- api("0123456789", "categories", parameters = parameters)
 # result is a list containing content and headers in native R.  Use jsonlite::toJSON() to convert to JSON format.
