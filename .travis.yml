@@ -8,12 +8,13 @@ git:
 repos:
   CRAN: https://cloud.r-project.org
 r_packages:
+  - devtools
   - httr
   - jsonlite
-  - testthat
-  - optparse
   - knitr
+  - optparse
   - roxygen2
+  - testthat
 after_install:
   - cd rosetteApi
 warnings_are_errors: true
