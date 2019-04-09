@@ -1,7 +1,6 @@
 source("../R/Api.R")
-library(hash)
 library(jsonlite)
-library("optparse")
+library(optparse)
 
 option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
               help="Rosette API key"), make_option(c("-u", "--url"), action="store", default=NA, type='character',
@@ -10,7 +9,7 @@ opt_parser = OptionParser(option_list=option_list)
 opt = parse_args(opt_parser)
 
 similar_terms_data <- "spy"
-opts <- hash()
+opts <- list()
 opts[["resultLanguages"]] <- list("deu", "spa", "jpn")
 
 parameters <- list()
