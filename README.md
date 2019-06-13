@@ -24,6 +24,23 @@ There may be times when the latest version is not yet available on CRAN.  In tha
 ```
 install_github("rosette-api/r-binding")
 ```
+Command line example:
+
+```
+$ R -e 'install.packages("devtools")
+$ cat > installrosette.R << EOF
+> library(devtools)
+> install_github("rosette-api/r-binding")
+> q()
+> EOF
+$ R --no-save < installrosettte.R
+```
+
+If the version you are using is not [the latest from CRAN](https://cran.r-project.org/package=rosetteApi)
+or [GitHub](https://github.com/rosette-api/R-Binding/releases),
+you can verify the [**compatibilty with api.rosette.com**](https://developer.rosette.com/features-and-functions?r).
+If you have an on-premise version of Rosette API server, please contact support for
+binding compatibility with your installation.
 
 To check your installed version:
 
@@ -41,7 +58,7 @@ in the [examples](https://github.com/rosette-api/R-Binding/tree/develop/examples
 - [Rosette Platform Release Notes](https://support.rosette.com/hc/en-us/articles/360018354971-Release-Notes)
 - [Binding/Rosette Platform Compatibility](https://developer.rosette.com/features-and-functions?r#)
 - [Support](https://support.rosette.com)
-- [Binding License: Apache 2.0](https://github.com/rosette-api/R-Binding/blob/develop/LICENSE.txt)
+- [Binding License: Apache 2.0](https://github.com/rosette-api/R-Binding/blob/develop/LICENSE)
 
 ## Binding Developer Information
 If you are modifying the binding code, please refer to the [developer README](https://github.com/rosette-api/R-Binding/tree/develop/DEVELOPER.md) file.
