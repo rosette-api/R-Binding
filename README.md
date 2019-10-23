@@ -1,3 +1,7 @@
+<a href="https://www.rosette.com"><img src="https://s3.amazonaws.com/styleguide.basistech.com/logos/rosette-logo.png" width="181" height="47" /></a>
+
+---
+
 [![Build Status](https://travis-ci.org/rosette-api/R-Binding.svg?branch=develop)](https://travis-ci.org/rosette-api/R-Binding) ![](https://img.shields.io/cran/v/rosetteApi.svg?colorB=bright%20green&style=flat)
 
 # R client Binding for Rosette API #
