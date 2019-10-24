@@ -25,4 +25,4 @@ Suggests:
 URL: https://developer.rosette.com
 BugReports: https://developer.rosette.com/support-ticket
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

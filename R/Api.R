@@ -6,9 +6,11 @@ library(jsonlite)
 
 #' api wrapper function that checks for a user_key and determines the
 #' Rosette API endpoint to be utilized
+#'
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
-#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @param parameters - parameters list to be passed to specified Rosette API
+#'   endpoint
 #' @param custom_headers - custom headers for Rosette Api
 #' @param url_parameters - query parameters
 #' @param url - url for Rosette Api
@@ -16,7 +18,8 @@ library(jsonlite)
 #' @examples
 #' \dontrun{
 #' parameters <- list()
-#' parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters film."
+#' parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters
+#' film."
 #' response <- api(01234567890, "entities", parameters)
 #' # The call above returns response$content and response$header
 #' }
@@ -27,7 +30,7 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL,
     stop("API key param empty")
   } else {
     if (!is.null(custom_headers)) {
-      if (grepl("^X-RosetteAPI-", names(custom_headers)) == FALSE){
+      if (grepl("^X-RosetteAPI-", names(custom_headers)) == FALSE) {
         stop("Custom headers must start with \"X-RosetteAPI-\"")
       }
     }
@@ -125,19 +128,23 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL,
 }
 
 #' Provides the binding Version
+#'
 #' @return current binding version
 get_binding_version <- function() {
-  binding.version <- "1.12.1"
-  return(binding.version)
+  binding_version <- "1.12.1"
+  return(binding_version)
 }
 
 #' preemptive check for content/contentUri request parameter errors
-#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#'
+#' @param parameters - parameters list to be passed to specified Rosette API
+#'   endpoint
 #' @return Returns list of verified parameters to be sent to Rosette API
 check_content_parameters <- function(parameters) {
-  if ("content" %in% names(parameters)  && "contentUri" %in% names(parameters)){
+  if ("content" %in% names(parameters) && "contentUri" %in% names(parameters)) {
     stop("Cannot specify both content and contentUri parameters")
-  } else if (!("content" %in% names(parameters))  && !("contentUri" %in% names(parameters))) {
+  } else if (!("content" %in% names(parameters)) &&
+             !("contentUri" %in% names(parameters))) {
     stop("Must specify either content or contentUri parameters")
   } else {
     return(parameters)
@@ -145,7 +152,9 @@ check_content_parameters <- function(parameters) {
 }
 
 #' determine which morphology endpoint to use
-#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#'
+#' @param parameters - parameters list to be passed to specified Rosette API
+#'   endpoint
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @return Returns the specified morphology function
 check_morphology <- function(parameters, endpoint) {
@@ -157,21 +166,27 @@ check_morphology <- function(parameters, endpoint) {
   }
 }
 
-#' check if the required request parameters for either names endpoint are correct
-#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' check if the required request parameters for either names endpoint are
+#' correct
+#'
+#' @param parameters - parameters list to be passed to specified Rosette API
+#'   endpoint
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @return Returns list of verified parameters to be sent to Rosette API
 check_names <- function(parameters, endpoint) {
   params <- parameters
   if (endpoint == "name-translation") {
-    if (!("name" %in% names(params)) || !("targetLanguage" %in% names(params))) {
-      stop("Must supply name and targetLanguage parameters for name-translation endpoint")
+    if (!("name" %in% names(params)) ||
+        !("targetLanguage" %in% names(params))) {
+      stop(paste("Must supply name and targetLanguage parameters for ",
+                 "name-translation endpoint", sep = ""))
     } else {
       return(parameters)
     }
   } else if (endpoint == "name-similarity") {
     if (!("name1" %in% names(params)) || !("name2" %in% names(params))) {
-      stop("Must supply both name1 and name2 parameters for name-similarity endpoint")
+      stop(paste("Must supply both name1 and name2 parameters for ",
+                 "name-similarity endpoint", sep = ""))
     } else {
       return(parameters)
     }
@@ -179,7 +194,9 @@ check_names <- function(parameters, endpoint) {
 }
 
 #' check if the required request parameters for name deduplication are correct
-#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#'
+#' @param parameters - parameters list to be passed to specified Rosette API
+#'   endpoint
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @return Returns list of verified parameters to be sent to Rosette API
 check_deduplication <- function(parameters, endpoint) {
@@ -192,7 +209,9 @@ check_deduplication <- function(parameters, endpoint) {
 }
 
 #' create a multipart
-#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#'
+#' @param parameters - parameters list to be passed to specified Rosette API
+#'   endpoint
 #' @return Returns a multipart
 create_multipart <- function(parameters) {
   content <- parameters["content"]
@@ -207,7 +226,7 @@ create_multipart <- function(parameters) {
   multi <- paste(multi, 'Content-Disposition: mixed; name="request"', sep = "")
   multi <- paste(multi, crlf, sep = "")
   multi <- paste(multi, crlf, sep = "")
-  if (length(jsonlite::fromJSON(parameters)) != 0){
+  if (length(jsonlite::fromJSON(parameters)) != 0) {
     multi <- paste(multi, parameters, sep = "")
   } else {
     multi <- paste(multi, "{}", sep = "")
@@ -229,6 +248,7 @@ create_multipart <- function(parameters) {
 }
 
 #' check if Rosette API response includes and error message
+#'
 #' @param response - response from Rosette API
 #' @return Returns an error if one exists or the Rosette API response
 error_check <- function(response) {
@@ -240,6 +260,7 @@ error_check <- function(response) {
 }
 
 #' Helper to combine custom headers with the default ones
+#'
 #' @param user_key - Rosette API authentication key
 #' @param content_type - Header Content-Type
 #' @param custom_headers - custom headers for the Rosette API
@@ -263,45 +284,57 @@ get_user_agent <- function() {
 }
 
 #' serialize Rosette API parameters
-#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#'
+#' @param parameters - parameters list to be passed to specified Rosette API
+#'   endpoint
 #' @return Returns the serialized parameters for the Rosette API
 serialize_parameters <- function(parameters) {
   serialized_params <- list()
   for (param in names(parameters)) {
-    if (param == "genre" || param == "profileId" || param == "language" || param == "content" || param == "options" || param == "contentUri" || param == "content_type") {
-    serialized_params[[param]] <- parameters[[param]]
+    if (param == "genre" || param == "profileId" || param == "language" ||
+        param == "content" || param == "options" || param == "contentUri" ||
+        param == "content_type") {
+      serialized_params[[param]] <- parameters[[param]]
     }
   }
   return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
 }
 
 #' serialize Rosette API parameters
-#' @param parameters - parameters list to be passed to either name-translation or name-similarity
+#'
+#' @param parameters - parameters list to be passed to either name-translation
+#'   or name-similarity
 #' @return Returns the serialized parameters for the Rosette API
 serialize_name_parameters <- function(parameters) {
   serialized_params <- list()
   for (param in names(parameters)) {
-    if (param == "name" || param == "targetLanguage" || param == "targetScript" || param == "entityType" || param == "sourceScript" || param == "sourceLanguageOfOrigin" || param == "sourceLanguageOfUse" || param == "targetScheme" || param == "name1" || param == "name2") {
-    serialized_params[[param]] <- parameters[[param]]
+    if (param == "name" || param == "targetLanguage" ||
+        param == "targetScript" || param == "entityType" ||
+        param == "sourceScript" || param == "sourceLanguageOfOrigin" ||
+        param == "sourceLanguageOfUse" || param == "targetScheme" ||
+        param == "name1" || param == "name2") {
+      serialized_params[[param]] <- parameters[[param]]
     }
   }
   return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
 }
 
 #' serialize Rosette API parameters
+#'
 #' @param parameters - parameters list to be passed to name-deduplication
 #' @return Returns the serialized parameters for the Rosette API
 serialize_name_deduplication_parameters <- function(parameters) {
   serialized_params <- list()
   for (param in names(parameters)) {
     if (param == "names" || param == "threshold") {
-    serialized_params[[param]] <- parameters[[param]]
+      serialized_params[[param]] <- parameters[[param]]
     }
   }
   return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
 }
 
 #' Helper to check for file submission
+#'
 #' @param parameters - JSON parameters
 #' @return true if multipart
 check_for_multipart <- function(parameters) {
@@ -309,9 +342,11 @@ check_for_multipart <- function(parameters) {
 }
 
 #' httr::POST request to specified Rosette API endpoint
+#'
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
-#' @param parameters - parameters list to be passed to specified Rosette API endpoint
+#' @param parameters - parameters list to be passed to specified Rosette API
+#'   endpoint
 #' @param url - url for Rosette Api
 #' @param custom_headers - custom headers for Rosette Api
 #' @param url_parameters - query parameters
@@ -356,6 +391,7 @@ post_endpoint <- function(user_key, parameters, endpoint, url,
 }
 
 #' httr::GET request to specified Rosette API endpoint
+#'
 #' @param user_key - Rosette API authentication key
 #' @param endpoint - Rosette API endpoint to be utilized
 #' @param url - url for Rosette Api
