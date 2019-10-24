@@ -4,8 +4,7 @@ Each example file demonstrates one of the capabilities of the Rosette Platform.
 
 ## Running Examples In Docker Environment
 
-You will need an API key to pass as a parameter to the example file.  See the [README](../README.md) section on *Rosette API Access
-* for details.
+You will need an API key to pass as a parameter to the example file.  See the [README](../README.md) section on *Rosette API Access* for details.
 
 ```
 git clone git@github.com:rosette-api/R-Binding.git

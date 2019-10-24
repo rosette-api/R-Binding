@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/rosette-api/R-Binding.svg?branch=develop)](https://travis-ci.org/rosette-api/R-Binding) ![](https://img.shields.io/cran/v/rosetteApi.svg?colorB=bright%20green&style=flat)
 
-# R client Binding for Rosette API #
+# R client Binding for Rosette API
 
 ## Rosette API
 The Rosette Text Analytics Platform uses natural language processing, statistical modeling, and machine learning to
@@ -16,10 +16,10 @@ comparing the similarity of names, categorizing and adding linguistic tags to te
 - Rosette Cloud [Sign Up](https://developer.rosette.com/signup)
 - Rosette Enterprise [Evaluation](https://www.rosette.com/product-eval/)
 
-## Quick Start ##
+## Quick Start
 
-### Installation ###
-Install the module thru [CRAN](https://CRAN.R-project.org/package=rosetteApi):
+#### Installation
+Install the module from [CRAN](https://CRAN.R-project.org/package=rosetteApi):
 ```
 install.packages('rosetteApi')
 ```
@@ -38,4 +38,4 @@ in the [examples](https://github.com/rosette-api/R-Binding/tree/develop/examples
 - [Binding License: Apache 2.0](https://github.com/rosette-api/R-Binding/blob/develop/LICENSE)
 
 ## Binding Developer Information
-If you are modifying the binding code, please refer to the [developer README](https://github.com/rosette-api/R-Binding/tree/develop/DEVELOPER.md) file.
+If you are modifying the binding code, please refer to the [developer README](https://github.com/rosette-api/R-Binding/blob/develop/DEVELOPER.md) file.
