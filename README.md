@@ -19,37 +19,10 @@ comparing the similarity of names, categorizing and adding linguistic tags to te
 ## Quick Start ##
 
 ### Installation ###
-Install the module thru CRAN:
+Install the module thru [CRAN](https://CRAN.R-project.org/package=rosetteApi):
 ```
-install.packages('rosetteAPI')
+install.packages('rosetteApi')
 ```
-
-There may be times when the latest version is not yet available on CRAN.  In that case you can install from GitHub:
-```
-install_github("rosette-api/r-binding")
-```
-Command line example:
-
-```
-$ R -e 'install.packages("devtools")
-$ cat > installrosette.R << EOF
-> library(devtools)
-> install_github("rosette-api/r-binding")
-> q()
-> EOF
-$ R --no-save < installrosettte.R
-```
-
-If the version you are using is not [the latest from CRAN](https://cran.r-project.org/package=rosetteApi)
-or [GitHub](https://github.com/rosette-api/R-Binding/releases),
-you can verify the [**compatibilty with api.rosette.com**](https://developer.rosette.com/features-and-functions?r).
-If you have an on-premise version of Rosette API server, please contact support for
-binding compatibility with your installation.
-
-To check your installed version:
-
-`> packageVersion("rosetteAPI")`
-
 
 #### Examples
 View small example programs for each Rosette endpoint
