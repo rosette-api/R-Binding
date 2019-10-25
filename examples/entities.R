@@ -21,7 +21,8 @@ parameters[["genre"]] <- "social-media"
 url_parameters <- list(output = "rosette")
 
 if (is.na(opt$url)) {
-   result <- api(opt$key, "entities", parameters, url_parameters = url_parameters)
+   result <- api(opt$key, "entities", parameters,
+                 url_parameters = url_parameters)
 } else {
    result <- api(opt$key, "entities", parameters, NULL, NULL, opt$url)
 }

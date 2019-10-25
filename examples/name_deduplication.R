@@ -16,10 +16,10 @@ name_dedupe_data <- "Alice Terry,Alice Thierry,Betty Grable,Betty Gable,Norma Sh
 
 
 text <- unlist(strsplit(name_dedupe_data, ","))
-targetLanguage <- rep("eng", length(text))
-targetScript <- rep("Latn", length(text))
+target_language <- rep("eng", length(text))
+target_script <- rep("Latn", length(text))
 
-names = data.frame(text, targetLanguage, targetScript)
+names <- data.frame(text, target_language, target_script)
 parameters <- list()
 parameters[["names"]] <- names
 parameters[["threshold"]] <- 0.75

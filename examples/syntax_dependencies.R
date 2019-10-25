@@ -20,7 +20,8 @@ parameters[["content"]] <- syntax_dependencies_data
 if (is.na(opt$url)) {
    result <- api(opt$key, "syntax/dependencies", parameters)
 } else {
-   result <- api(opt$key, "syntax/dependencies", parameters, NULL, NULL, opt$url)
+   result <- api(opt$key, "syntax/dependencies", parameters,
+                 NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

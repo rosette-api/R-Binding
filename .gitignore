@@ -6,3 +6,4 @@ inst/doc
 R/*.html
 *.Rcheck
 rosetteApi*.tar.gz
+lint_examples.sh
