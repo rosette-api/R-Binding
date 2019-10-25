@@ -54,3 +54,8 @@ chmod a+x lint_examples.sh
 ```
 (cd examples/; Rscript address_similarity.R --key $API_KEY)
 ```
+
+* Run all the examples
+```
+(cd examples/; for file in $(ls *.R); do Rscript ${file} --key $API_KEY; done)
+```
