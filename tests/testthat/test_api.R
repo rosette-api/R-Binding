@@ -57,14 +57,28 @@ test_that("409 error is handled correctly", {
 test_that("The parameters fulfill the address-similarity requirements", {
   parameters <- list()
   parameters[["address1"]] <- list("houseNumber" = "1600",
-                                     "road" = "Pennsylvania Ave",
-                                     "city" = "Washington")
+                                   "road" = "Pennsylvania Ave",
+                                   "city" = "Washington")
   parameters[["address2"]] <- list("houseNumber" = "1600",
                                    "road" = "Pennsylvania Ave",
                                    "city" = "Washington",
                                    "state" = "D.C.",
                                    "postcode" = "20500")
-  expect_equal(check_names(parameters, "address-similarity"), parameters)
+  expect_equal(check_address_parameters(parameters), parameters)
+})
+
+test_that("The parameter check for address-similarity fails", {
+  parameters <- list()
+  parameters[["address1"]] <- list("houseNumber" = "1600",
+                                   "road" = "Pennsylvania Ave",
+                                   "city" = "Washington")
+  parameters[["notaddress2"]] <- list("houseNumber" = "1600",
+                                      "road" = "Pennsylvania Ave",
+                                      "city" = "Washington",
+                                      "state" = "D.C.",
+                                      "postcode" = "20500")
+  expect_error(check_address_parameters(parameters),
+               "Must specify both address1 and address2 parameters")
 })
 
 test_that("The parameters fulfill the name-translation requirements", {

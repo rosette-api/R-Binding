@@ -2,12 +2,14 @@
 % Please edit documentation in R/Api.R
 \name{check_names}
 \alias{check_names}
-\title{check if the required request parameters for either names endpoint are correct}
+\title{check if the required request parameters for either names endpoint are
+correct}
 \usage{
 check_names(parameters, endpoint)
 }
 \arguments{
-\item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
+\item{parameters}{- parameters list to be passed to specified Rosette API
+endpoint}
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 }
@@ -15,5 +17,6 @@ check_names(parameters, endpoint)
 Returns list of verified parameters to be sent to Rosette API
 }
 \description{
-check if the required request parameters for either names endpoint are correct
+check if the required request parameters for either names endpoint are
+correct
 }

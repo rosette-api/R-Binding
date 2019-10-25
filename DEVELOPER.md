@@ -15,8 +15,12 @@ cd /R-Binding/
 * Install dependencies
 ```
 apt-get update
-apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
-Rscript -e 'install.packages("devtools")' -e 'install.packages("knitr")' -e 'install.packages("lintr")' -e 'install.packages("optparse")'
+apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev qpdf
+Rscript -e 'install.packages("devtools")' \
+        -e 'install.packages("knitr")' \
+        -e 'install.packages("lintr")' \
+        -e 'install.packages("optparse")' \
+        -e 'install.packages("rmarkdown")'
 
 ```
 
@@ -27,7 +31,7 @@ Rscript -e 'install.packages("devtools")' -e 'install.packages("knitr")' -e 'ins
 Rscript -e 'devtools::test()'
 ```
 
-* Run CRAN submission checking
+* Run CRAN submission check
 ```
 Rscript -e 'devtools::check()'
 ```
@@ -48,5 +52,5 @@ chmod a+x lint_examples.sh
 
 * Run an example file
 ```
-(cd examples/; Rscript transliteration.R --key $API_KEY)
+(cd examples/; Rscript address_similarity.R --key $API_KEY)
 ```

@@ -7,7 +7,8 @@
 check_content_parameters(parameters)
 }
 \arguments{
-\item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
+\item{parameters}{- parameters list to be passed to specified Rosette API
+endpoint}
 }
 \value{
 Returns list of verified parameters to be sent to Rosette API

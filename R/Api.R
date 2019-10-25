@@ -1,5 +1,18 @@
+# Copyright 2016-2019 Basis Technology Corporation.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # Rosette API R binding
-# Author: Sam Hausmann
 
 library(httr)
 library(jsonlite)
@@ -41,15 +54,9 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL,
 
 
     response <- switch(endpoint,
-      "info" = error_check(
-        get_endpoint(user_key, "info", url, custom_headers, url_parameters)
-      ),
-      "ping" = error_check(
-        get_endpoint(user_key, "ping", url, custom_headers, url_parameters)
-      ),
-      "language" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters),
-                      "language", url, custom_headers, url_parameters)
+      "address-similarity" = error_check(
+        post_endpoint(user_key, check_address_parameters(parameters),
+                      "address-similarity", url, custom_headers, url_parameters)
       ),
       "categories" = error_check(
         post_endpoint(user_key, check_content_parameters(parameters),
@@ -59,13 +66,17 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL,
         post_endpoint(user_key, check_content_parameters(parameters),
                       "entities", url, custom_headers, url_parameters)
       ),
-      "name-translation" = error_check(
-        post_endpoint(user_key, check_names(parameters, "name-translation"),
-                      "name-translation", url, custom_headers, url_parameters)
+      "info" = error_check(
+        get_endpoint(user_key, "info", url, custom_headers, url_parameters)
       ),
-      "name-similarity" = error_check(
-        post_endpoint(user_key, check_names(parameters, "name-similarity"),
-                      "name-similarity", url, custom_headers, url_parameters)
+      "language" = error_check(
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "language", url, custom_headers, url_parameters)
+      ),
+      "morphology" = error_check(
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      check_morphology(parameters, "morphology"), url,
+                      custom_headers, url_parameters)
       ),
       "name-deduplication" = error_check(
         post_endpoint(user_key, check_deduplication(parameters,
@@ -73,9 +84,45 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL,
                       "name-deduplication", url, custom_headers,
                       url_parameters)
       ),
+      "name-similarity" = error_check(
+        post_endpoint(user_key, check_names(parameters, "name-similarity"),
+                      "name-similarity", url, custom_headers, url_parameters)
+      ),
+      "name-translation" = error_check(
+        post_endpoint(user_key, check_names(parameters, "name-translation"),
+                      "name-translation", url, custom_headers, url_parameters)
+      ),
+      "ping" = error_check(
+        get_endpoint(user_key, "ping", url, custom_headers, url_parameters)
+      ),
       "relationships" = error_check(
         post_endpoint(user_key, check_content_parameters(parameters),
                       "relationships", url, custom_headers, url_parameters)
+      ),
+      "semantics/similar" = error_check(
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "semantics/similar", url, custom_headers, url_parameters)
+      ),
+      "semantics/vector" = error_check(
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "semantics/vector", url, custom_headers, url_parameters)
+      ),
+      "sentences" = error_check(
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "sentences", url, custom_headers, url_parameters)
+      ),
+      "sentiment" = error_check(
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "sentiment", url, custom_headers, url_parameters)
+      ),
+      "syntax/dependencies" = error_check(
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "syntax/dependencies", url, custom_headers,
+                      url_parameters)
+      ),
+      "text-embedding" = error_check(
+        post_endpoint(user_key, check_content_parameters(parameters),
+                      "text-embedding", url, custom_headers, url_parameters)
       ),
       "tokens" = error_check(
         post_endpoint(user_key, check_content_parameters(parameters),
@@ -85,39 +132,9 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL,
         post_endpoint(user_key, check_content_parameters(parameters),
                       "topics", url, custom_headers, url_parameters)
       ),
-      "morphology" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters),
-                      check_morphology(parameters, "morphology"), url,
-                      custom_headers, url_parameters)
-      ),
-      "sentiment" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters),
-                      "sentiment", url, custom_headers, url_parameters)
-      ),
-      "sentences" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters),
-                      "sentences", url, custom_headers, url_parameters)
-      ),
-      "text-embedding" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters),
-                      "text-embedding", url, custom_headers, url_parameters)
-      ),
-      "semantics/vector" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters),
-                      "semantics/vector", url, custom_headers, url_parameters)
-      ),
       "transliteration" = error_check(
         post_endpoint(user_key, check_content_parameters(parameters),
                       "transliteration", url, custom_headers, url_parameters)
-      ),
-      "syntax/dependencies" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters),
-                      "syntax/dependencies", url, custom_headers,
-                      url_parameters)
-      ),
-      "semantics/similar" = error_check(
-        post_endpoint(user_key, check_content_parameters(parameters),
-                      "semantics/similar", url, custom_headers, url_parameters)
       ),
       stop("Specify a valid Rosette API endpoint")
     )
@@ -131,8 +148,22 @@ api <- function(user_key, endpoint, parameters=FALSE, custom_headers=NULL,
 #'
 #' @return current binding version
 get_binding_version <- function() {
-  binding_version <- "1.12.1"
+  binding_version <- "1.14.3"
   return(binding_version)
+}
+
+#' preemptive check for address-similarity request parameter errors
+#'
+#' @param parameters - parameters list to be passed to specified Rosette API
+#'   endpoint
+#' @return Returns list of verified parameters to be sent to Rosette API
+check_address_parameters <- function(parameters) {
+  if (!("address1" %in% names(parameters)) ||
+      !("address2" %in% names(parameters))) {
+    stop("Must specify both address1 and address2 parameters")
+  } else {
+    return(parameters)
+  }
 }
 
 #' preemptive check for content/contentUri request parameter errors
@@ -300,6 +331,20 @@ serialize_parameters <- function(parameters) {
   return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
 }
 
+#' serialize address-similarity parameters
+#'
+#' @param parameters - parameters list to be passed to address-similarity
+#' @return Returns the serialized parameters for the Rosette API
+serialize_address_params <- function(parameters) {
+  serialized_params <- list()
+  for (param in names(parameters)) {
+    if (param == "address1" || param == "address2") {
+      serialized_params[[param]] <- parameters[[param]]
+    }
+  }
+  return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
+}
+
 #' serialize Rosette API parameters
 #'
 #' @param parameters - parameters list to be passed to either name-translation
@@ -364,6 +409,8 @@ post_endpoint <- function(user_key, parameters, endpoint, url,
       request_body <- serialize_name_parameters(parameters)
     } else if (endpoint == "name-deduplication") {
       request_body <- serialize_name_deduplication_parameters(parameters)
+    } else if (endpoint == "address-similarity") {
+      request_body <- serialize_address_params(parameters)
     } else {
       request_body <- serialize_parameters(parameters)
     }
