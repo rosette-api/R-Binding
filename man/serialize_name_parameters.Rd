@@ -7,7 +7,8 @@
 serialize_name_parameters(parameters)
 }
 \arguments{
-\item{parameters}{- parameters list to be passed to either name-translation or name-similarity}
+\item{parameters}{- parameters list to be passed to either name-translation
+or name-similarity}
 }
 \value{
 Returns the serialized parameters for the Rosette API

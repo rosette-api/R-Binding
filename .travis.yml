@@ -8,15 +8,19 @@ git:
 repos:
   CRAN: https://cloud.r-project.org
 r_packages:
+  - devtools
   - httr
   - jsonlite
-  - testthat
-  - optparse
   - knitr
+  - optparse
   - roxygen2
+  - testthat
 after_install:
   - cd rosetteApi
-script: Rscript -e 'devtools::test()'
+warnings_are_errors: true
+script:
+  - Rscript -e 'devtools::test()'
+  - Rscript -e 'devtools::check()'
 notifications:
   slack:
     rooms:

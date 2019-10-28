@@ -10,7 +10,8 @@ post_endpoint(user_key, parameters, endpoint, url, custom_headers = NULL,
 \arguments{
 \item{user_key}{- Rosette API authentication key}
 
-\item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
+\item{parameters}{- parameters list to be passed to specified Rosette API
+endpoint}
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 

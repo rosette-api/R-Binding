@@ -1,18 +1,18 @@
 Package: rosetteApi
 Type: Package
-Title: Rosette API
-Version: 1.9.0
-Date: 2018-01-18
+Title: 'Rosette' API
+Version: _new_version_
+Date: 2019-10-25
 Authors@R: c(
-    person("Chris", "Park", email = "cpark@basistech.com", role = c("aut", "cre")),
+    person("Chris", "Park", role = "aut"),
     person("Sam", "Hausmann", role = "aut"),
     person("Hannah", "Gaudet", role = "ctb"),
-    person("Seth", "Gransky", email = "seth@basistech.com", role = "ctb"),
-    person("Basis", "Technology Corp.", role ="cph"))
-Maintainer: Chris Park <cpark@basistech.com>
-Description: Rosette is an API for multilingual text analysis and information
+    person("Ian", "Redpath", email = "iredpath@basistech.com", role = "ctb"),
+    person("Seth", "Gransky", email = "seth@basistech.com", role = c("ctb", "cre")),
+    person("Basis", "Technology Corp.", email = "support@rosette.com", role ="cph"))
+Description: 'Rosette' is an API for multilingual text analysis and information
     extraction. More information can be found at <https://developer.rosette.com>.
-License: file LICENSE
+License: Apache License 2.0 | file LICENSE
 Depends:
     R (>= 3.1.0)
 Imports:
@@ -25,4 +25,4 @@ Suggests:
 URL: https://developer.rosette.com
 BugReports: https://developer.rosette.com/support-ticket
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

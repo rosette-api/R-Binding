@@ -2,7 +2,8 @@
 % Please edit documentation in R/Api.R
 \name{api}
 \alias{api}
-\title{api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized}
+\title{api wrapper function that checks for a user_key and determines the
+Rosette API endpoint to be utilized}
 \usage{
 api(user_key, endpoint, parameters = FALSE, custom_headers = NULL,
   url_parameters = NULL, url = "https://api.rosette.com/rest/v1/")
@@ -12,7 +13,8 @@ api(user_key, endpoint, parameters = FALSE, custom_headers = NULL,
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
-\item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
+\item{parameters}{- parameters list to be passed to specified Rosette API
+endpoint}
 
 \item{custom_headers}{- custom headers for Rosette Api}
 
@@ -24,12 +26,15 @@ api(user_key, endpoint, parameters = FALSE, custom_headers = NULL,
 Returns a list(content, header)
 }
 \description{
-api wrapper function that checks for a user_key and determines the Rosette API endpoint to be utilized
+api wrapper function that checks for a user_key and determines the
+Rosette API endpoint to be utilized
 }
 \examples{
 \dontrun{
 parameters <- list()
-parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters film."
-response = api(01234567890, "entities", parameters) will return response$content and response$header
+parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters
+film."
+response <- api(01234567890, "entities", parameters)
+# The call above returns response$content and response$header
 }
 }

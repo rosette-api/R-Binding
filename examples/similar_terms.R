@@ -12,18 +12,18 @@ option_list <- list(
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
-
-matched_name_data1 <- "Michael Jackson"
-matched_name_data2 <- "迈克尔·杰克逊"
+similar_terms_data <- "spy"
+opts <- list()
+opts[["resultLanguages"]] <- list("deu", "spa", "jpn")
 
 parameters <- list()
-parameters[["name1"]] <- matched_name_data1
-parameters[["name2"]] <- matched_name_data2
+parameters[["content"]] <- similar_terms_data
+parameters[["options"]] <- opts
 
 if (is.na(opt$url)) {
-   result <- api(opt$key, "name-similarity", parameters)
+   result <- api(opt$key, "semantics/similar", parameters)
 } else {
-   result <- api(opt$key, "name-similarity", parameters, NULL, NULL, opt$url)
+   result <- api(opt$key, "semantics/similar", parameters, NULL, NULL, opt$url)
 }
 print(jsonlite::toJSON(result$header, pretty = TRUE))
 print(jsonlite::toJSON(result$content, pretty = TRUE))

@@ -6,3 +6,6 @@
 ^\.travis\.yml$
 examples$
 ^Jenkinsfile
+^DEVELOPER.md
+^lint_examples.sh
+^\.git$
