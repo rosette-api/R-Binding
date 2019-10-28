@@ -29,7 +29,7 @@ View small example programs for each Rosette endpoint
 in the [examples](https://github.com/rosette-api/R-Binding/tree/develop/examples) directory.
 
 #### Documentation & Support
-- [Binding API](https://cran.r-project.org/web/packages/rosetteApi/rosetteApi.pdf)
+- [Binding API](https://cran.r-project.org/package=rosetteApi/rosetteApi.pdf)
 - [Rosette Platform API](https://developer.rosette.com/features-and-functions)
 - [Binding Release Notes](https://github.com/rosette-api/R-Binding/wiki/Release-Notes)
 - [Rosette Platform Release Notes](https://support.rosette.com/hc/en-us/articles/360018354971-Release-Notes)
