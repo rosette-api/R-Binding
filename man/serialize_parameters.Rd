@@ -7,7 +7,8 @@
 serialize_parameters(parameters)
 }
 \arguments{
-\item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
+\item{parameters}{- parameters list to be passed to specified Rosette API
+endpoint}
 }
 \value{
 Returns the serialized parameters for the Rosette API

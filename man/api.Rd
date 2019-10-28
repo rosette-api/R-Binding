@@ -13,7 +13,8 @@ api(user_key, endpoint, parameters = FALSE, custom_headers = NULL,
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 
-\item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
+\item{parameters}{- parameters list to be passed to specified Rosette API
+endpoint}
 
 \item{custom_headers}{- custom headers for Rosette Api}
 
@@ -31,7 +32,8 @@ Rosette API endpoint to be utilized
 \examples{
 \dontrun{
 parameters <- list()
-parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters film."
+parameters[[ "content" ]] <- "Bill Murray will appear in new Ghostbusters
+film."
 response <- api(01234567890, "entities", parameters)
 # The call above returns response$content and response$header
 }

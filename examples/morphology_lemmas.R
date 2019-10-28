@@ -1,20 +1,24 @@
 source("../R/Api.R")
 library(jsonlite)
-library("optparse")
+library(optparse)
 
-option_list = list( make_option(c("-k", "--key"), action="store", default=NA, type='character',
-              help="Rosette API key"), make_option(c("-u", "--url"), action="store", default=NA, type='character',
-              help="Rosette API url"))
-opt_parser = OptionParser(option_list=option_list)
-opt = parse_args(opt_parser)
+option_list <- list(
+  make_option(c("-k", "--key"),
+    action = "store", default = NA, type = "character",
+    help = "Rosette API key"),
+  make_option(c("-u", "--url"),
+    action = "store", default = NA, type = "character",
+    help = "Rosette API url"))
+opt_parser <- OptionParser(option_list = option_list)
+opt <- parse_args(opt_parser)
 
 morphology_lemmas_data <- "The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
 
 parameters <- list()
-parameters[[ "content" ]] <- morphology_lemmas_data
-parameters[[ "morphology" ]] <- "lemmas"
+parameters[["content"]] <- morphology_lemmas_data
+parameters[["morphology"]] <- "lemmas"
 
-if (is.na(opt$url)){
+if (is.na(opt$url)) {
    result <- api(opt$key, "morphology", parameters)
 } else {
    result <- api(opt$key, "morphology", parameters, NULL, NULL, opt$url)

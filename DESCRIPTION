@@ -1,8 +1,8 @@
 Package: rosetteApi
 Type: Package
 Title: 'Rosette' API
-Version: 1.12.1
-Date: 2019-03-14
+Version: 1.14.3
+Date: 2019-10-25
 Authors@R: c(
     person("Chris", "Park", role = "aut"),
     person("Sam", "Hausmann", role = "aut"),
@@ -25,4 +25,4 @@ Suggests:
 URL: https://developer.rosette.com
 BugReports: https://developer.rosette.com/support-ticket
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

@@ -1,6 +1,6 @@
 ---
 title: "Rosette API R Binding"
-author: "Chris Park"
+author: "Basis Technology Corp."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -11,54 +11,23 @@ vignette: >
 
 
 ## Introduction
+Welcome to the Rosette API suite of linguistic tools and services for R.
 
-Welcome to the Rosette API suite of linguistic tools and services for R! With the Rosette API endpoints you can extract entities and relationships, translate and compare names, and analyze sentiment of documents and entities from large amounts of unstructured text.
+The Rosette Text Analytics Platform uses natural language processing, statistical modeling, and machine learning to analyze unstructured and semi-structured text across 364 language-encoding-script combinations, revealing valuable information and actionable data. Rosette provides endpoints for extracting entities and relationships, translating and comparing the similarity of names, categorizing and adding linguistic tags to text and more.
 
-## Limits
+## Rosette API Access
+- Rosette Cloud [Sign Up](https://developer.rosette.com/signup)
+- Rosette Enterprise [Evaluation](https://www.rosette.com/product-eval/)
 
-Rosette can process one call at a time. You can send a second call once you have received a response from the first.
+## Examples
+View small example programs for each Rosette endpoint
+in the [examples](https://github.com/rosette-api/R-Binding/tree/develop/examples) directory.
 
-The maximum payload size is 600KB, with a maximum character count of 50,000.
-
-## Authentication
-Rosette uses API keys to allow access to the API. You can find your Rosette API key on our [Developer Portal](https://developer.rosette.com/login), or [Sign Up](https://developer.rosette.com/signup) for a new API key.
-
-## Features and Functions
-
-Visit our [Features and Functions](https://developer.rosette.com/features-and-functions) page for a more detailed look at the functionality of the Rosette API endpoints.
-
-## API Parameters
-| Parameter                     | Endpoint                                            | Required
-| -------------                 |-------------                                        |-------------
-| content                    | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics, syntax/dependencies, transliteration (Yes)            | Either content or contentUri required |
-| contentUri                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics, syntax/dependencies       | Either content or contentUri required |
-| language                          | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics, name similarity                    | No |
-| documentFile                      | categories, entities, language, morphology, relationships, sentences, sentiment, tokens, topics | No |
-| name1                 | name similarity               | Yes |
-| name2               | name similarity| Yes |
-| name    | name translation     | Yes |
-| targetLanguage           | name translation, transliteration (No)          | Yes |
-| entityType                 | name translation         | No |
-| sourceLanguageOfOrigin        | name translation | No |
-| sourceLanguageOfUse                         | name translation       | No |
-| sourceScript                     | name translation, transliteration               | No |
-| sourceLanguage | transliteration | Yes |
-| targetScript                     | name translation, transliteration                   | No |
-| targetScheme                        | name translation          | No |
-| options              | relationships        | No |
-| accuracyMode              | relationships        | Yes |
-| explain              | sentiment        | No |
-| morphology             | morphology        | Yes |
-
-## Example using the Rosette API categories endpoint
-```R
-library(rosetteApi)
-library(jsonlite)
-
-parameters <- list()
-parameters[[ "contentUri" ]] <- "https://onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
-
-result <- api("0123456789", "categories", parameters = parameters)
-# result is a list containing content and headers in native R.  Use jsonlite::toJSON() to convert to JSON format.
-print(jsonlite::toJSON(result$content, pretty = TRUE)
-```
+## Documentation & Support
+- [Binding API](https://cran.r-project.org/package=rosetteApi/rosetteApi.pdf)
+- [Rosette Platform API](https://developer.rosette.com/features-and-functions)
+- [Binding Release Notes](https://github.com/rosette-api/R-Binding/wiki/Release-Notes)
+- [Rosette Platform Release Notes](https://support.rosette.com/hc/en-us/articles/360018354971-Release-Notes)
+- [Binding/Rosette Platform Compatibility](https://developer.rosette.com/features-and-functions?r#)
+- [Support](https://support.rosette.com)
+- [Binding License: Apache 2.0](https://github.com/rosette-api/R-Binding/blob/develop/LICENSE)

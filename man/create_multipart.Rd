@@ -7,7 +7,8 @@
 create_multipart(parameters)
 }
 \arguments{
-\item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
+\item{parameters}{- parameters list to be passed to specified Rosette API
+endpoint}
 }
 \value{
 Returns a multipart

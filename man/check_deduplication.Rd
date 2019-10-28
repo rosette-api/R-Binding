@@ -7,7 +7,8 @@
 check_deduplication(parameters, endpoint)
 }
 \arguments{
-\item{parameters}{- parameters list to be passed to specified Rosette API endpoint}
+\item{parameters}{- parameters list to be passed to specified Rosette API
+endpoint}
 
 \item{endpoint}{- Rosette API endpoint to be utilized}
 }

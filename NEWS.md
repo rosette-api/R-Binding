@@ -1,3 +1,7 @@
+# rosetteApi 1.14.3 (2019-10-25)
+- New Address Similarity endpoint `/address-similarity`
+- New Address Similarity example.
+
 # rosetteApi 1.12.1 (2019-03-14)
 - New Similar Terms endpoint `/semantics/similar`
 - New Similar Terms example
