@@ -4,8 +4,6 @@
 
 [![Build Status](https://travis-ci.org/rosette-api/R-Binding.svg?branch=develop)](https://travis-ci.org/rosette-api/R-Binding) ![](https://img.shields.io/cran/v/rosetteApi.svg?colorB=bright%20green&style=flat)
 
-# R client Binding for Rosette API
-
 ## Rosette API
 The Rosette Text Analytics Platform uses natural language processing, statistical modeling, and machine learning to
 analyze unstructured and semi-structured text across 364 language-encoding-script combinations, revealing valuable
