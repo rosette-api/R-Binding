@@ -14,14 +14,16 @@ opt <- parse_args(opt_parser)
 
 
 address1_data <- list("houseNumber" = "1600",
-                      "road" = "Pennsylvania Ave",
-                      "city" = "Washington")
+                      "road" = "Pennsylvania Ave NW",
+                      "city" = "Washington",
+                      "state" = "DC",
+                      "postCode" = "20500")
 
-address2_data <- list("houseNumber" = "1600",
-                      "road" = "Pennsylvania Avenue",
+address2_data <- list("houseNumber" = "160",
+                      "road" = "Pennsilvana Avenue",
                       "city" = "Washington",
                       "state" = "D.C.",
-                      "postcode" = "20500")
+                      "postCode" = "20500")
 
 parameters <- list()
 parameters[["address1"]] <- address1_data
