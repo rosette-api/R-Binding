@@ -19,11 +19,7 @@ address1_data <- list("houseNumber" = "1600",
                       "state" = "DC",
                       "postCode" = "20500")
 
-address2_data <- list("houseNumber" = "160",
-                      "road" = "Pennsilvana Avenue",
-                      "city" = "Washington",
-                      "state" = "D.C.",
-                      "postCode" = "20500")
+address2_data <- "160 Pennsilvana Avenue, Washington, D.C., 20500"
 
 parameters <- list()
 parameters[["address1"]] <- address1_data
