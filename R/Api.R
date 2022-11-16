@@ -322,7 +322,7 @@ get_user_agent <- function() {
 serialize_parameters <- function(parameters) {
   serialized_params <- list()
   for (param in names(parameters)) {
-    if (param == "genre" || param == "profileId" || param == "language" ||
+    if (param == "profileId" || param == "language" ||
         param == "content" || param == "options" || param == "contentUri" ||
         param == "content_type") {
       serialized_params[[param]] <- parameters[[param]]
