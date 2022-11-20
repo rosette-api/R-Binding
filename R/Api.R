@@ -327,6 +327,10 @@ serialize_parameters <- function(parameters) {
         param == "content_type") {
       serialized_params[[param]] <- parameters[[param]]
     }
+
+    if (param == "genre") {
+      warning("The genre parameter is deprecated and will be removed in a future release.")
+    }
   }
   return(jsonlite::toJSON(serialized_params, auto_unbox = TRUE))
 }
