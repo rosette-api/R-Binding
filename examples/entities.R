@@ -16,7 +16,7 @@ entities_text_data <- "The Securities and Exchange Commission today announced th
 
 parameters <- list()
 parameters[["content"]] <- entities_text_data
-parameters[["genre"]] <- "social-media"
+
 # advanced output
 url_parameters <- list(output = "rosette")
 
