@@ -12,7 +12,7 @@ option_list <- list(
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
-categories_url_data <- "https://www.rosette.com/about/"
+categories_url_data <- "https://www.babelstreet.com/rosette/"
 
 parameters <- list()
 parameters[["contentUri"]] <- categories_url_data
