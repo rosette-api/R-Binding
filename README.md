@@ -12,7 +12,6 @@ comparing the similarity of names, categorizing and adding linguistic tags to te
 
 ## Rosette API Access
 - Rosette Cloud [Sign Up](https://developer.rosette.com/signup)
-- Rosette Enterprise [Evaluation](https://www.rosette.com/product-eval/)
 
 ## Quick Start
 
