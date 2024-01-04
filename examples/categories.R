@@ -12,10 +12,10 @@ option_list <- list(
 opt_parser <- OptionParser(option_list = option_list)
 opt <- parse_args(opt_parser)
 
-categories_url_data <- "https://www.rosette.com/about/"
+categories_text_data <- "If you are a fan of the British television series Downton Abbey and you are planning to be in New York anytime before April 2nd, there is a perfect stop for you while in town."
 
 parameters <- list()
-parameters[["contentUri"]] <- categories_url_data
+parameters[["content"]] <- categories_text_data
 
 if (is.na(opt$url)) {
    result <- api(opt$key, "categories", parameters)
