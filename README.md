@@ -2,7 +2,7 @@
 
 ---
 
-[![Build Status](https://travis-ci.org/rosette-api/R-Binding.svg?branch=develop)](https://travis-ci.org/rosette-api/R-Binding) ![](https://img.shields.io/cran/v/rosetteApi.svg?colorB=bright%20green&style=flat)
+![](https://img.shields.io/cran/v/rosetteApi.svg?colorB=bright%20green&style=flat)
 
 ## Rosette API
 The Rosette Text Analytics Platform uses natural language processing, statistical modeling, and machine learning to
